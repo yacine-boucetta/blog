@@ -4,6 +4,7 @@ require 'db.php';
 class Droits{
     public $id;
     public $login;
+    public $db;
     
     public function __construct(){
         $this->db = connect();
