@@ -111,7 +111,7 @@ public function deleteUser($login)
     $deleteQuery->bindValue(":login", $login, PDO::PARAM_STR);
     $deleteQuery->execute();
 }
-
+//-------------------------------------------------------------------------------------------------------------------------------
 public function getUser(){
     $i = 0;
     $get = $this->db->prepare("SELECT * FROM user");

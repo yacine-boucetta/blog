@@ -45,6 +45,43 @@ if(isset($_POST['sign_up'])){
             </form>
         </div>
     </article>
+    <article>
+        <h2>Modification de User</h2>
+                            <form id="add_user" action="" method="POST">
+
+                                <select name="moddingUser">
+                                    <option  >Select</option>
+                                    <?php
+                                    $article = new User();
+                                    $article->getDisplay();
+                                    ?>
+                                </select>
+                                
+                                <label for="UpdateLog">Login</label>
+                                <input type="text" name="UpdateLog">
+
+                                <label for="UpdateMail">E-Mail:</label>
+                                <input type="eMail" name="UpdateMail">
+
+                                <label for="updatePW">Nouveau mot de passe:</label>
+                                <input type="password" name="updatePW">
+
+                                <label for="updateCPW">Confirmez le mot de passe: </label>
+                                <input type="password" name="updateCPW">
+
+                                <label>Select Droits</label>
+                                <select name="droitUser">
+                                    <option>Select</option>
+                                    <?php
+                                    $droits = new Droits();
+                                    $droits->displayChoice();
+                                    ?>
+                                </select>
+
+                                <input type="submit" name="mod" value="Envoyer">
+                                <input type="submit" name="deleteUser" value="Supprimer">
+                            </form>
+    </article>
 </main>
 
 <?php
