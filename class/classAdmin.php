@@ -23,16 +23,17 @@ public function updateDroits($login, $id_droits){
     }
     }
 //--------------------------------------------------Ajout user -------------------------------------------------
-public function registerNewUser($login, $password, $confPassword, $email){
+public function registerNewUser($login, $password, $email, $id_droits){
 
     $error_log = null;
+    $confPassword = $_POST['password2'];
 
     $login = htmlspecialchars($login);
     $password = htmlspecialchars($password);
     $confPassword = htmlspecialchars($confPassword);
     $email = htmlspecialchars($email);
 
-    if(!empty($login) && !empty($password) && !empty($confPassword) && !empty($email)){
+    if(!empty($login) && !empty($password) && !empty($confPassword) && !empty($email) && !empty($id_droits)){
 
         $logLenght = strlen($login);
         $passLenght = strlen($password);
@@ -52,12 +53,11 @@ public function registerNewUser($login, $password, $confPassword, $email){
 
                     $insert = connect()->prepare("INSERT INTO utilisateurs (login, password, email, id_droits) VALUES (:login, :password, :email, :value)");
                     $insert->bindValue(":login", $login, PDO::PARAM_STR);
-                    $insert->bindValue(":password", $password, PDO::PARAM_STR);
-                    $insert->bindValue(":email", $password, PDO::PARAM_STR);
-                    $insert->bindValue(":value", 1, PDO::PARAM_INT);
+                    $insert->bindValue(":password", $cryptpass, PDO::PARAM_STR);
+                    $insert->bindValue(":email", $email, PDO::PARAM_STR);
+                    $insert->bindValue(":value", $id_droits, PDO::PARAM_INT);
                     $insert->execute();
                     echo "Nouvel utilisateur ajouté";
-
 
                 }
                 else {
@@ -110,6 +110,26 @@ public function deleteUser($login)
     $deleteQuery = connect()->prepare("DELETE FROM user WHERE login = :login");
     $deleteQuery->bindValue(":login", $login, PDO::PARAM_STR);
     $deleteQuery->execute();
+}
+
+public function getUser(){
+    $i = 0;
+    $get = $this->db->prepare("SELECT * FROM user");
+    $get->execute();
+    while($fetch = $get->fetch(PDO::FETCH_ASSOC)){
+        $tableau[$i][] = $fetch['id'];
+        $tableau[$i][] = $fetch['login'];
+        $i++;
+    }
+    return $tableau;
+}
+
+public function getDisplay(){
+    $display = new User();
+    $tableau = $display->getUser();
+    foreach($tableau as $value){
+        echo '<option values"' .$value[0] . '">' . $value[1] . '</option>';
+    }
 }
 
 } 

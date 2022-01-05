@@ -4,8 +4,8 @@ require '../template/header.php';
 require '../class/classAdmin.php';
 
 if(isset($_POST['sign_up'])){
-$registerNewUser = new Admin();
-$registerNewUser->registerNewUser($_POST['login'],$_POST['password'],$_POST['password2'],$_POST['email']);
+    $registerNewUser = new Admin();
+    $registerNewUser->registerNewUser($_POST['login'],$_POST['password'],$_POST['email'], $_POST['droits']);
 }
 ?>
 <main>
@@ -31,7 +31,7 @@ $registerNewUser->registerNewUser($_POST['login'],$_POST['password'],$_POST['pas
                 </div>
                 <div class="item">
                     <label for="name">Droits<span>*</span></label>
-                    <select id="droits">
+                    <select name="droits" id="droits">
                         <option value='1'>Utilisateur</option>
                         <option value='42'>Moderateur</option>
                         <option value='1337'>Admin</option>
