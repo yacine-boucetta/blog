@@ -23,9 +23,10 @@ public function updateDroits($login, $id_droits){
     }
     }
 //--------------------------------------------------Ajout user -------------------------------------------------
-public function registerNewUser($login, $password, $confPassword, $email, $id_droits){
+public function registerNewUser($login, $password, $email, $id_droits){
 
-    $errorLog = null;
+    $error_log = null;
+    $confPassword = $_POST['password2'];
 
     $login = htmlspecialchars($login);
     $password = htmlspecialchars($password);
@@ -39,7 +40,7 @@ public function registerNewUser($login, $password, $confPassword, $email, $id_dr
         $confirmLenght = strlen($confPassword);
         $mailLenght = strlen($email);
 
-        if(($logLenght >6) && ($passLenght >6) && ($confirmLenght >6) && ($mailLengh > 6)){
+        if(($logLenght >= 6) && ($passLenght >= 6) && ($confirmLenght >= 6) && ($mailLenght >= 6)){
             $checkLength = connect()->prepare("SELECT login FROM utilisateur WHERE login=:login");
             $checkLength->bindValue(":login", $login, PDO::PARAM_STR);
             $checkLength->execute();
@@ -50,13 +51,13 @@ public function registerNewUser($login, $password, $confPassword, $email, $id_dr
                 if($password == $confPassword){
                     $cryptpass = password_hash($password, PASSWORD_BCRYPT);
 
-                    $insert = connetc()->prepare("INSERT INTO utilisateur (login, password, email, id_droits) VALUES (:login, :password, email, 1)");
+                    $insert = connect()->prepare("INSERT INTO utilisateurs (login, password, email, id_droits) VALUES (:login, :password, :email, :value)");
                     $insert->bindValue(":login", $login, PDO::PARAM_STR);
-                    $insert->bindValue(":password", $password, PDO::PARAM_STR);
-                    $insert->bindValue(":email", $password, PDO::PARAM_STR);
+                    $insert->bindValue(":password", $cryptpass, PDO::PARAM_STR);
+                    $insert->bindValue(":email", $email, PDO::PARAM_STR);
+                    $insert->bindValue(":value", $id_droits, PDO::PARAM_INT);
                     $insert->execute();
                     echo "Nouvel utilisateur ajouté";
-
 
                 }
                 else {
@@ -68,7 +69,7 @@ public function registerNewUser($login, $password, $confPassword, $email, $id_dr
             }
         }
         else {
-            $error_log = "2 caractères minimum doivent être insérés dans chaques champs" ; 
+            $error_log = "6 caractères minimum doivent être insérés dans chaques champs" ; 
         }
     }
     else {
@@ -109,6 +110,26 @@ public function deleteUser($login)
     $deleteQuery = connect()->prepare("DELETE FROM user WHERE login = :login");
     $deleteQuery->bindValue(":login", $login, PDO::PARAM_STR);
     $deleteQuery->execute();
+}
+//-------------------------------------------------------------------------------------------------------------------------------
+public function getUser(){
+    $i = 0;
+    $get = $this->db->prepare("SELECT * FROM user");
+    $get->execute();
+    while($fetch = $get->fetch(PDO::FETCH_ASSOC)){
+        $tableau[$i][] = $fetch['id'];
+        $tableau[$i][] = $fetch['login'];
+        $i++;
+    }
+    return $tableau;
+}
+
+public function getDisplay(){
+    $display = new User();
+    $tableau = $display->getUser();
+    foreach($tableau as $value){
+        echo '<option values"' .$value[0] . '">' . $value[1] . '</option>';
+    }
 }
 
 } 
