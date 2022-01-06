@@ -46,7 +46,6 @@ class Articles(){
     }
 //----------------------------menu deroulant pour categorie----------------------------------------------------
 
-
     public createCat(){
         if(isset($_POST['verifier'])){
             $error='';
@@ -70,11 +69,11 @@ class Articles(){
     }
     }
 
-
-
-
-
-
+    public selectCat(){
+        $check_categorie=$this->db->prepare("SELECT * From `categorie`");
+        $check_categorie->execute()
+        $fetch_cat=$check_categorie->fetch(PDO::FETCH_ASSOC);
+    }
 
 
 }
