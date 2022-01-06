@@ -3,10 +3,12 @@
 require '../template/header.php';
 require '../class/classAdmin.php';
 
+
 if(isset($_POST['sign_up'])){
     $registerNewUser = new Admin();
     $registerNewUser->registerNewUser($_POST['login'],$_POST['password'],$_POST['email'], $_POST['droits']);
 }
+
 ?>
 <main>
     <article>
@@ -48,15 +50,15 @@ if(isset($_POST['sign_up'])){
     <article>
         <h2>Modification de User</h2>
                             <form id="add_user" action="" method="POST">
-
                                 <select name="moddingUser">
                                     <option  >Select</option>
                                     <?php
-                                    $article = new User();
+                                    $article = new Admin();
                                     $article->getDisplay();
                                     ?>
                                 </select>
-                                
+                                </form>
+                                <form>
                                 <label for="UpdateLog">Login</label>
                                 <input type="text" name="UpdateLog">
 
@@ -68,7 +70,7 @@ if(isset($_POST['sign_up'])){
 
                                 <label for="updateCPW">Confirmez le mot de passe: </label>
                                 <input type="password" name="updateCPW">
-
+                                </form>
                                 <label>Select Droits</label>
                                 <select name="droitUser">
                                     <option>Select</option>
