@@ -111,7 +111,7 @@ public function deleteUser($login)
     $deleteQuery->bindValue(":login", $login, PDO::PARAM_STR);
     $deleteQuery->execute();
 }
-//-------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------liste USER------------------------------------------------------------
 public function getUser(){
     $i = 0;
     $get = $this->db->prepare("SELECT * FROM user");
@@ -125,12 +125,30 @@ public function getUser(){
 }
 
 public function getDisplay(){
-    $display = new User();
+    $display = new Admin();
     $tableau = $display->getUser();
     foreach($tableau as $value){
         echo '<option values"' .$value[0] . '">' . $value[1] . '</option>';
     }
 }
-
+//------------------------------------------------------liste droits -------------------------------------------------------------------
+public function getChoice(){
+    $i = 0;
+    $choice = $this->db->prepare("SELECT * FROM droits");
+    $choice->execute();
+    while ($fetch = $choice->fetch(PDO::FETCH_ASSOC)){
+        $tab[$i][] = $fetch['id'];
+        $tab[$i][] = $fetch['login'];
+        $i++;
+    }
+    return $tab;
+}
+public function displayChoice(){
+    $disChoice = new Admin();
+    $tab = $disChoice->getChoice();
+    foreach($tab as $values){
+        echo '<option value="' .$values[0] . '">'. $values[1] .'</option>';
+    }
+}
 } 
 ?>
