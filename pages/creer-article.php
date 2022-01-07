@@ -1,14 +1,16 @@
 
 <?php
-
 require '../class/classArticles.php';
-$creat_art= new Articles;
-    $creat_art->createCat() ;
-    $creat_art->createArticle(); ?>
+?>
 
 <form method='post' >
-<h1> <?php echo $error; 
-var_dump($error);?> </h1>
+<p>
+<?php
+    $creat_art= new Articles;
+    $creat_art->createCat() ;
+    $creat_art->createArticle();?> 
+</p>
+
 <input  type="text" name="categorie"  placeholder="créer une catégorie">
 <input type='submit' name='verifier'value='verifier' />
 </form>

@@ -1,13 +1,14 @@
 <?php
 require 'db.php';
-
+// $error='';
 class Articles{
 
     public $id_categories;
     public $articles;
     public $date;
     public $id_utilisateur;
-    
+    public $error='';
+
     function __construct() {
         $this->db=connect();
     }
@@ -45,12 +46,13 @@ class Articles{
 //----------------------------menu deroulant pour categorie----------------------------------------------------
 
     public function createCat(){
-        $error='';
+        
         if(isset($_POST['verifier'])){
             $categorie=$_POST['categorie'];   
             
             if(empty($categorie)){
                     $error='veuillez remplir le champ';
+                    echo$error;
             }
             else{
             $check_categorie=$this->db->prepare("SELECT * From `categories` WHERE `nom`=:cat");
@@ -61,6 +63,7 @@ class Articles{
 
             if($verif_cat>0){
                 $error="La catégorie existe déjà";
+                echo $error;
             }
 
             else{
