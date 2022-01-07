@@ -11,17 +11,17 @@ class Admin{
         $this->db = connect();
     }
 //---------------------------------------------------Update droits----------------------------------------
-public function updateDroits($login, $id_droits){
-    if(!empty($id_droits) && !empty($login)){
-        $query = $this->db->prepare("UPDATE utilisateurs SET id_droits=:id WHERE id=:id_droits");
-        $query->bindValue(':id',$id_droits, PDO::PARAM_INT);
-        $query->bindValue(':login',$login, PDO::PARAM_STR);
-        $query->execute();
-    }
-    else{
-        echo "Veuillez remplir tous les champs";
-    }
-    }
+// public function updateDroits($login, $id_droits){
+//     if(!empty($id_droits) && !empty($login)){
+//         $query = $this->db->prepare("UPDATE utilisateurs SET id_droits=:id WHERE id=:id_droits");
+//         $query->bindValue(':id',$id_droits, PDO::PARAM_INT);
+//         $query->bindValue(':login',$login, PDO::PARAM_STR);
+//         $query->execute();
+//     }
+//     else{
+//         echo "Veuillez remplir tous les champs";
+//     }
+//     }
 //--------------------------------------------------Ajout user -------------------------------------------------
 public function registerNewUser($login, $password, $email, $id_droits){
 
@@ -78,7 +78,7 @@ public function registerNewUser($login, $password, $email, $id_droits){
     echo $error_log;
 }
 //-----------------------------------------------------UPDATE USER --------------------------------------------------------------------
-public function UpdateNewUser($old_login, $login, $email, $password, $confirmPW){
+public function UpdateNewUser($old_login, $login, $email, $password, $confirmPW,$idDroits){
 
     $login     = htmlspecialchars(trim($login));
     $email     = htmlspecialchars(trim($email));
@@ -88,12 +88,12 @@ public function UpdateNewUser($old_login, $login, $email, $password, $confirmPW)
     if (!empty($login) && !empty($email) && !empty($password) && !empty($confirmPW)){
 
         $cryptedpass = password_hash($password, PASSWORD_BCRYPT); // CRYPTED 
-        $update = connect()->prepare("UPDATE utilisateurs SET login = :login, password = :cryptedpass, email= :mail WHERE login = :old_login"); 
+        $update = connect()->prepare("UPDATE utilisateurs SET login = :login, password = :cryptedpass, email= :mail, id_droits = :idDroits WHERE login = :old_login"); 
         $update->bindValue(":login", $login, PDO::PARAM_STR);
         $update->bindValue(":cryptedpass",$cryptedpass, PDO::PARAM_STR);
         $update->bindValue(":old_login", $old_login, PDO::PARAM_STR);
         $update->bindValue(":mail",$email, PDO::PARAM_STR);
-        
+        $update->bindValue(":idDroits", $idDroits, PDO::PARAM_INT);
         $update->execute();
 
         }
@@ -107,15 +107,16 @@ public function UpdateNewUser($old_login, $login, $email, $password, $confirmPW)
 //------------------------------------------------------------DELETE USER ------------------------------------------------------------
 public function deleteUser($login)
 {
-    $deleteQuery = connect()->prepare("DELETE FROM user WHERE login = :login");
+    $deleteQuery = connect()->prepare("DELETE FROM utilisateurs WHERE login = :login");
     $deleteQuery->bindValue(":login", $login, PDO::PARAM_STR);
     $deleteQuery->execute();
 }
 //--------------------------------------------------------liste USER------------------------------------------------------------
 public function getUser(){
     $i = 0;
-    $get = $this->db->prepare("SELECT * FROM user");
+    $get = $this->db->prepare("SELECT * FROM utilisateurs");
     $get->execute();
+    //$tableau=$get->fetch(PDO::FETCH_ASSOC);
     while($fetch = $get->fetch(PDO::FETCH_ASSOC)){
         $tableau[$i][] = $fetch['id'];
         $tableau[$i][] = $fetch['login'];
@@ -138,7 +139,7 @@ public function getChoice(){
     $choice->execute();
     while ($fetch = $choice->fetch(PDO::FETCH_ASSOC)){
         $tab[$i][] = $fetch['id'];
-        $tab[$i][] = $fetch['login'];
+        $tab[$i][] = $fetch['nom'];
         $i++;
     }
     return $tab;

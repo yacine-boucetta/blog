@@ -3,12 +3,26 @@
 require '../template/header.php';
 require '../class/classAdmin.php';
 
+// $oldlogin = $_POST['moddingUser'];
+// $newDroit = $_POST['droitUser'];
+
+//var_dump($newDroit);
 
 if(isset($_POST['sign_up'])){
     $registerNewUser = new Admin();
     $registerNewUser->registerNewUser($_POST['login'],$_POST['password'],$_POST['email'], $_POST['droits']);
 }
+if(isset($_POST['mod'])){
+    $modUser = new Admin();
+    $modUser -> UpdateNewUser($_POST['moddingUser'],$_POST['UpdateLog'],$_POST['UpdateMail'],$_POST['updatePW'], $_POST['updateCPW'], $_POST['droitUser']);
+}
+if(isset($_POST['deleteUser'])){
+    $deleteUser = new Admin();
+    $deleteUser -> deleteUser($_POST['moddingUser']);
+}
 
+
+//var_dump($oldlogin);
 ?>
 <main>
     <article>
@@ -51,14 +65,12 @@ if(isset($_POST['sign_up'])){
         <h2>Modification de User</h2>
                             <form id="add_user" action="" method="POST">
                                 <select name="moddingUser">
-                                    <option  >Select</option>
                                     <?php
                                     $article = new Admin();
                                     $article->getDisplay();
                                     ?>
                                 </select>
-                                </form>
-                                <form>
+
                                 <label for="UpdateLog">Login</label>
                                 <input type="text" name="UpdateLog">
 
@@ -70,12 +82,10 @@ if(isset($_POST['sign_up'])){
 
                                 <label for="updateCPW">Confirmez le mot de passe: </label>
                                 <input type="password" name="updateCPW">
-                                </form>
                                 <label>Select Droits</label>
                                 <select name="droitUser">
-                                    <option>Select</option>
                                     <?php
-                                    $droits = new Droits();
+                                    $droits = new Admin();
                                     $droits->displayChoice();
                                     ?>
                                 </select>
