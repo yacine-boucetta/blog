@@ -3,8 +3,8 @@
 require '../template/header.php';
 require '../class/classAdmin.php';
 
-$oldlogin = $_POST['moddingUser'];
-$newDroit = $_POST['droitUser'];
+// $oldlogin = $_POST['moddingUser'];
+// $newDroit = $_POST['droitUser'];
 
 //var_dump($newDroit);
 
@@ -15,6 +15,10 @@ if(isset($_POST['sign_up'])){
 if(isset($_POST['mod'])){
     $modUser = new Admin();
     $modUser -> UpdateNewUser($_POST['moddingUser'],$_POST['UpdateLog'],$_POST['UpdateMail'],$_POST['updatePW'], $_POST['updateCPW'], $_POST['droitUser']);
+}
+if(isset($_POST['deleteUser'])){
+    $deleteUser = new Admin();
+    $deleteUser -> deleteUser($_POST['moddingUser']);
 }
 
 
@@ -61,7 +65,6 @@ if(isset($_POST['mod'])){
         <h2>Modification de User</h2>
                             <form id="add_user" action="" method="POST">
                                 <select name="moddingUser">
-                                    <option>Select</option>
                                     <?php
                                     $article = new Admin();
                                     $article->getDisplay();
@@ -81,7 +84,6 @@ if(isset($_POST['mod'])){
                                 <input type="password" name="updateCPW">
                                 <label>Select Droits</label>
                                 <select name="droitUser">
-                                    <option>Select</option>
                                     <?php
                                     $droits = new Admin();
                                     $droits->displayChoice();

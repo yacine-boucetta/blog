@@ -107,7 +107,7 @@ public function UpdateNewUser($old_login, $login, $email, $password, $confirmPW,
 //------------------------------------------------------------DELETE USER ------------------------------------------------------------
 public function deleteUser($login)
 {
-    $deleteQuery = connect()->prepare("DELETE FROM user WHERE login = :login");
+    $deleteQuery = connect()->prepare("DELETE FROM utilisateurs WHERE login = :login");
     $deleteQuery->bindValue(":login", $login, PDO::PARAM_STR);
     $deleteQuery->execute();
 }
