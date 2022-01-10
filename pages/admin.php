@@ -47,12 +47,12 @@ if(isset($_POST['deleteUser'])){
                 </div>
                 <div class="item">
                     <label for="name">Droits<span>*</span></label>
-                    <select name="droits" id="droits">
-                        <option value='1'>Utilisateur</option>
-                        <option value='42'>Moderateur</option>
-                        <option value='1337'>Admin</option>
-                        <option></option>
-                    </select>
+                        <select name="moddingUser">
+                            <?php
+                                $article = new Admin();
+                                $article->displayChoice();
+                            ?>
+                        </select>
                 </div>
                 <div class="btn-block">
                     <button name='sign_up'type="submit" href="/">sign up</button>
