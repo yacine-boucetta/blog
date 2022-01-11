@@ -17,8 +17,8 @@ $displayIndex->articleIndex();
             <table>
                 <thead>
                     <th>Articles</th>
-                    <th>Posté par</th>
                     <th>Categorie</th>
+                    <th>Posté par</th>
                     <th>Posté le</th>
                 </thead>
                 <tbody>

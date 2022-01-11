@@ -23,7 +23,7 @@ class Articles{
 //-------------------------------------Display article index------------------------------------------------------------------------------------------------
     public function articleIndex(){
 
-        $displayArticle = $this->db->prepare("SELECT article,nom,utilisateurs.login,id_categorie,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date DESC LIMIT 3");
+        $displayArticle = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date DESC LIMIT 3");
         $displayArticle->execute();
         $display = $displayArticle->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['artIndex'] = $display;
