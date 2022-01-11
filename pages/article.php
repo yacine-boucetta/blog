@@ -3,8 +3,8 @@
 require '../class/classArticles.php';
 
 $article = new Articles();
-$articles=$article->getArticle();
-var_dump($articles);
+$article->getArticle();
+var_dump($article);
 ?>
 
 <main class="container">
@@ -12,26 +12,25 @@ var_dump($articles);
             <section class="col-12">
                 <h1>Liste des articles</h1>
                 <table class="table">
-                    <thead>
-                        <th>ID</th>
-                        <th>Titre</th>
-                        <th>Date</th>
-                    </thead>
-                    <tbody>
-                        <?php
-                        // On boucle sur tous les articles
-                        foreach($articles as $key => $value){
-                        ?>
-                            <tr>
-                                <td><?= $article['id'] ?></td>
-                                <td><?= $article['titre'] ?></td>
-                                <td><?= $article['created_at'] ?></td>
-                            </tr>
-                        <?php
+        <thead>
+            <th>Article</th>
+            <th>login</th>
+            <th>categorie</th>
+            <th>date</th>
+        </thead>
+        <tbody>
+            <tr>
+                <?php foreach($_SESSION['article'] as $key => $value){ 
+                    echo '<tr>';
+                    foreach ($value as $key1 => $value1) 
+                        {
+                            echo "<td>$value1</td>";
                         }
-                        ?>
-                    </tbody>
-                </table>
+                    echo '</tr>'; 
+                }
+                ?>
+        </tbody>
+    </table>
             </section>
         </div>
-    </main>r
+    </main>

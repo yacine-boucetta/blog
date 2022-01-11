@@ -15,9 +15,10 @@ class Articles{
 
 //------------------------------affiche article-----------------
     public function getArticle(){
-        $new_art=$this->db->prepare("SELECT article,nom,utilisateurs.login,id_categorie,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ");
+        $new_art=$this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ");
         $new_art->execute();
-        $affichearticle=$new_art->fetchAll(PDO::FETCH_ASSOC);
+        $affichearticle=$new_art->fetchall(PDO::FETCH_ASSOC);
+        $_SESSION['article']=$affichearticle;
     }
 //-------------------------------------Display article index------------------------------------------------------------------------------------------------
     public function articleIndex(){
