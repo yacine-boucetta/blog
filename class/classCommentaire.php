@@ -37,7 +37,6 @@ class Comment(){
         else{
             $errorLog = 'Le commentaire est vide.'
         }
-
     }
 //-----------------------------------------------------Display Comment--------------------------------------------------
 
