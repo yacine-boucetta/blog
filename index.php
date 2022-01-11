@@ -5,7 +5,7 @@ require 'class/classArticles.php';
 $displayIndex = new Articles();
 $displayIndex->articleIndex();
 
-var_dump($_SESSION['artIndex']);
+//var_dump($_SESSION['artIndex']);
 ?>
 <main>
     <article>
