@@ -15,7 +15,7 @@ class Articles{
 
 //------------------------------affiche article-----------------
     public function getArticle(){
-        $new_art=$this->prepare("SELECT article,nom,login,id_categorie,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.login INNER JOIN categories ON categories.id = articles.id_categorie ");
+        $new_art=$this->db->prepare("SELECT article,nom,login,id_categorie,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.login INNER JOIN categories ON categories.id = articles.id_categorie");
         $new_art->execute();
         $affichearticle=$new_art->fetchAll(PDO::FETCH_ASSOC);
     }
