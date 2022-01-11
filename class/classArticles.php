@@ -15,9 +15,17 @@ class Articles{
 
 //------------------------------affiche article-----------------
     public function getArticle(){
-        $new_art=$this->prepare("SELECT article,nom,login,id_categorie,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.login INNER JOIN categories ON categories.id = articles.id_categorie ");
+        $new_art=$this->db->prepare("SELECT article,nom,utilisateurs.login,id_categorie,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ");
         $new_art->execute();
         $affichearticle=$new_art->fetchAll(PDO::FETCH_ASSOC);
+    }
+//-------------------------------------Display article index------------------------------------------------------------------------------------------------
+    public function articleIndex(){
+
+        $displayArticle = $this->db->prepare("SELECT article,nom,utilisateurs.login,id_categorie,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date DESC LIMIT 3");
+        $displayArticle->execute();
+        $display = $displayArticle->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['artIndex'] = $display;
     }
 
 //------------------------------creer article-----------------
