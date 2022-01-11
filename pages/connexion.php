@@ -1,5 +1,14 @@
 <?php
 
+$path_index="../index.php";
+$path_inscription="inscription.php";
+$path_connexion="connexion.php";
+$path_profil="profil.php";
+$path_articles="articles.php";
+$path_create="creer-article.php";
+$path_admin="admin.php";
+$path_deconnexion="deconnexion.php";
+
 require '../class/classUser.php';
 if(isset($_POST['sign_in'])){
     $connect= new User();
