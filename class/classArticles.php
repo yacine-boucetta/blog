@@ -23,24 +23,25 @@ class Articles{
 //------------------------------creer article-----------------
 
     public function createArticle(){
-        // if(isset($_SESSION['user'])){
-        //     $login=$_SESSION['user']['login'];
-        //     $take_id=$this->db->prepare("SELECT id FROM `utilisateurs` WHERE `login`= :login ");
-        //     $take_id->execute(array(':login' => $login));
-        //     $get_id=$take_id->fetchall(PDO::FETCH_ASSOC);
-        //     }
 
-        if(isset($_POST['envoyer'])){
+        if(isset($_GET['envoyer'])){
             $peudo=$_SESSION['user']['id'];
-            $comment=htmlspecialchars($_POST['comment'],ENT_QUOTES);
-            $connexion=$this->db->prepare("INSERT INTO `articles`(`article`, `id_utilisateur`,`id_categorie`,`date`) VALUES (:comment,:pseudo,:cat,:date)");
+            $get_id_cat=$_GET['cat'];
+            $connexion=$this->db->prepare("SELECT id FROM categories WHERE nom=:cat");
+            $connexion->execute(array(
+                ':cat'=>$get_id_cat
+            ));
+            $fetchid=$connexion->fetchall(PDO::FETCH_ASSOC);
+            var_dump($fetchid);
+            $comment=htmlspecialchars($_GET['comment'],ENT_QUOTES);
+            $connexion=$this->db->prepare("INSERT INTO `articles`(article, id_utilisateur,id_categorie,date) VALUES (:comment,:pseudo,:cat,:date)");
             $connexion->execute(array(
                 ':comment'=>$comment,
                 ':pseudo'=>$_SESSION['user']['id'],
-                ':cat'=>$get_id_cat,
-                ':date'=>date('Y-m-d H:i:s')
+                ':cat'=> $fetchid[0]['id'],
+                ':date'=>date("Y-m-d H:i:s")
             ));
-            
+            var_dump($connexion);
     }
     }
 //----------------------------menu deroulant pour categorie----------------------------------------------------
