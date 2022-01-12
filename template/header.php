@@ -24,7 +24,7 @@
                 <a class="nav-link" href='<?= $path_index ?>'>Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-            <?php if (isset($_SESSION['utilisateur'])) 
+            <?php if (isset($_SESSION['user'])) 
                     {
                         echo
                         "
@@ -35,10 +35,18 @@
                     }?>
             </li>
             <li class="nav-item">
-            <?php if (empty($_SESSION['utilisateur'])) { ?>
+            <?php if (empty($_SESSION['user'])) { ?>
         
                 <li><a class='nav-link' href='<?= $path_inscription?>'>Inscription</a></li>
                 <li><a class='nav-link' href='<?= $path_connexion?>'>Connexion</a></li>
+        
+            <?php } ?> 
+            </li>
+            <li class="nav-item">
+            <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_droits'] == 42 || $_SESSION['user']['id_droits'] == 1337) { ?>
+        
+                <li><a class='nav-link' href='<?= $path_create?>'>Creation d'articles</a></li>
+                <li><a class='nav-link' href='<?= $path_admin?>'>ADMIN</a></li>
         
             <?php } ?> 
             </li>

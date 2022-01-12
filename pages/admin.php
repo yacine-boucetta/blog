@@ -1,8 +1,5 @@
 <?php
 
-require '../template/header.php';
-require '../class/classAdmin.php';
-
 $path_index="../index.php";
 $path_inscription="inscription.php";
 $path_connexion="connexion.php";
@@ -11,6 +8,13 @@ $path_articles="articles.php";
 $path_create="creer-article.php";
 $path_admin="admin.php";
 $path_deconnexion="deconnexion.php";
+
+require '../template/header.php';
+require '../class/classAdmin.php';
+
+if(isset($_SESSION['user']) && $_SESSION['user']['id_droits'] = 1 || $_SESSION['user'] == ''){
+    header('Location:../index.php');
+}
 
 // $oldlogin = $_POST['moddingUser'];
 // $newDroit = $_POST['droitUser'];
