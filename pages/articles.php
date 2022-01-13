@@ -35,7 +35,7 @@ $ok = $article->getArticle();
                                         
                                 }
                                 else{
-                               echo"<a href=\"index.php?p=$i\">$i</a>/";
+                                echo"<a href=\"index.php?p=$i\">$i</a>/";
                         } 
                         }
                         
