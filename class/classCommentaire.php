@@ -47,13 +47,5 @@ class Comment{
         $_SESSION['commentaire'] = $result;
     }
 
-//-------------------------------------------------display comment by id ----------------------------------------------------------------
-
-    public function displayByID($id){
-        $commentId = $this->db->prepare("SELECT * FROM commentaire WHERE id = :id");
-        $commentId->execute();
-        $results = $commentId->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
 }
 ?>
