@@ -38,3 +38,6 @@ require_once '../template/header.php';
         ?>
     </article>
 </main>
+<?php
+require_once '../template/header.php';
+?>
