@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+//require 'db.php';
 
 class Comment{
     public $id;
@@ -8,9 +8,9 @@ class Comment{
     public $idUser;
     public $date;
 
-    public function __construct(){
-        $this->db=connect();
-    }
+    // public function __construct(){
+    //     $this->db=connect();
+    // }
 
 //-----------------------------------------------AJOUTS COMMENTAIRE----------------------------------------------------------------
 

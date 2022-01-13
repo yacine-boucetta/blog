@@ -1,5 +1,6 @@
 <?php
 require 'db.php';
+require 'classCommentaire.php';
 // $error='';
 class Articles{
 
@@ -29,7 +30,7 @@ class Articles{
         $_SESSION['artIndex'] = $display;
     }
 
-//------------------------------creer article-----------------
+//------------------------------------------------------creer article-----------------------------------------------------
 
     public function createArticle(){
 
@@ -113,7 +114,22 @@ class Articles{
         echo '<option values"' .$value[0] . '">' . $value[1] . '</option>';
     }
     }
+//----------------------------------------------Article by ----------------------------------------------------------------
+    public function getArticleById($id){
+        $artById = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom, articles.id,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie WHERE articles.id = :id");
+        $artById->bindValue(':id', $_GET['id'], PDO::PARAM_STR);
+        $artById->execute();
+        $result = $artById->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
+    // public function getNumb(){
+    //     $search2=$this->db->prepare("SELECT * FROM articles WHERE id = :id");
+    //     $search2->bindValue(':id', $_GET['id'], PDO::PARAM_STR);
+    //     $search2->execute();
+    //     $count=$search2->rowcount($search2);
+    //     return $count;
+    // }
 
 }
 

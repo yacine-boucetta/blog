@@ -24,7 +24,7 @@ $ok = $article->getArticle();
                         $searchn = $searchcount->getNumber();
                         var_dump($searchn);
                         for ($i = 0; $i < $searchn; $i++) {
-                                echo '<a href="<?php $path_article"?> ><article>' .
+                                echo '<a href='. $path_article.'><article>' .
                                         $ok[$i]['article'] . '</br>' .
                                         $ok[$i]['nom'] . '</br>' .
                                         $ok[$i]['login'] . '</br>' .
