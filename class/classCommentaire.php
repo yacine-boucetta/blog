@@ -1,7 +1,7 @@
 <?php
 require 'db.php';
 
-class Comment(){
+class Comment{
     public $id;
     public $comment;
     public $idArcticle;
@@ -35,16 +35,25 @@ class Comment(){
             }
         }
         else{
-            $errorLog = 'Le commentaire est vide.'
+            $errorLog = 'Le commentaire est vide.';
         }
     }
 //-----------------------------------------------------Display Comment--------------------------------------------------
 
     public function displayComment(){
         $disComment = $this->db->prepare("SELECT (commentaire, date, login) FROM commentaires INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur ORDER BY Date LIMIT 5");
-        $discomment->execute();
+        $disComment->execute();
         $result = $disComment->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['commentaire'] = $result;
+    }
+
+//-------------------------------------------------display comment by id ----------------------------------------------------------------
+
+    public function displayByID($id){
+        $commentId = $this->db->prepare("SELECT * FROM commentaire WHERE id = :id");
+        $commentId->execute();
+        $results = $commentId->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
     }
 }
 ?>

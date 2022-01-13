@@ -9,10 +9,11 @@ $path_create="creer-article.php";
 $path_admin="admin.php";
 $path_deconnexion="deconnexion.php";
 
-require '../template/header.php';
-require '../class/classAdmin.php';
 
-if(isset($_SESSION['user']) && $_SESSION['user']['id_droits'] = 1 || $_SESSION['user'] == ''){
+require '../class/classAdmin.php';
+var_dump($_SESSION['user']);
+
+if(empty($_SESSION['user']) || $_SESSION['user']['id_droits'] != 1337){
     header('Location:../index.php');
 }
 
@@ -34,8 +35,8 @@ if(isset($_POST['deleteUser'])){
     $deleteUser -> deleteUser($_POST['moddingUser']);
 }
 
-
 //var_dump($oldlogin);
+require '../template/header.php';
 ?>
 <main>
     <article>
@@ -60,7 +61,7 @@ if(isset($_POST['deleteUser'])){
                 </div>
                 <div class="item">
                     <label for="name">Droits<span>*</span></label>
-                        <select name="moddingUser">
+                        <select name="droits">
                             <?php
                                 $article = new Admin();
                                 $article->displayChoice();

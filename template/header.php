@@ -28,9 +28,9 @@
                     {
                         echo
                         "
-                        <a class='nav-link' href='$path_profil'>Profil</a>
-                        <a class='nav-link' href='$path_articles'>Articles</a>
-                        <a class='nav-link' href='$path_deconnexion'>Deconnexion</a>
+                        <li><a class='nav-link' href='$path_profil'>Profil</a></li>
+                        <li><a class='nav-link' href='$path_articles'>Articles</a></li>
+                        <li><a class='nav-link' href='$path_deconnexion'>Deconnexion</a></li>
                         ";
                     }?>
             </li>
@@ -43,21 +43,33 @@
             <?php } ?> 
             </li>
             <li class="nav-item">
-            <?php if (isset($_SESSION['user']) && $_SESSION['user']['id_droits'] == 42 || $_SESSION['user']['id_droits'] == 1337) { ?>
+            <?php 
+                if (!empty($_SESSION['user'])){ 
+                    if($_SESSION['user']['id_droits'] == 42 || $_SESSION['user']['id_droits'] == 1337) { ?>
+                        <li><a class='nav-link' href='<?= $path_create?>'>Creation d'articles</a></li>
         
-                <li><a class='nav-link' href='<?= $path_create?>'>Creation d'articles</a></li>
-                <li><a class='nav-link' href='<?= $path_admin?>'>ADMIN</a></li>
+            <?php } 
+                }
+            ?> 
+            </li>
+            <li class="nav-item">
+            <?php 
+                if (!empty($_SESSION['user'])){ 
+                    if($_SESSION['user']['id_droits'] == 1337) { ?>
+                        <li><a class='nav-link' href='<?= $path_admin?>'>ADMIN</a></li>
         
-            <?php } ?> 
+            <?php } 
+                }
+            ?> 
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown link
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                    <form>
+                        
+                    </form>
                 </div>
             </li>
             </ul>

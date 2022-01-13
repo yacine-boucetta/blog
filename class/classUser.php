@@ -40,7 +40,7 @@ public function user_inscription($login,$password,$password2,$email) {
                 ':login' =>$login,
                 ':password'=>$password,
                 ':email'=>$email,
-                ':value'=>1
+                ':value'=>'1'
             ));
             header("Location: connexion.php");
         }

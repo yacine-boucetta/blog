@@ -9,15 +9,17 @@ $path_create="pages/creer-article.php";
 $path_admin="pages/admin.php";
 $path_deconnexion="pages/deconnexion.php";
 
-require 'template/header.php';
+
 require 'class/classArticles.php';
+
+var_dump($_SESSION['user']);
 
 $displayIndex = new Articles();
 $displayIndex->articleIndex();
 
 //var_dump($_SESSION['artIndex']);
 
-
+require 'template/header.php';
 ?>
 <main>
     <article>
