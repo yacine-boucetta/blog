@@ -8,7 +8,7 @@ class Articles{
     public $date;
     public $id_utilisateur;
     public $error='';
-
+    
     function __construct() {
         $this->db=connect();
     }
@@ -18,7 +18,7 @@ class Articles{
         $new_art=$this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ");
         $new_art->execute();
         $affichearticle=$new_art->fetchall(PDO::FETCH_ASSOC);
-        $_SESSION['article']=$affichearticle;
+        return $affichearticle;
     }
 //-------------------------------------Display article index------------------------------------------------------------------------------------------------
     public function articleIndex(){
@@ -50,8 +50,16 @@ class Articles{
                 ':cat'=> $fetchid[0]['id'],
                 ':date'=>date("Y-m-d H:i:s")
             ));
-            var_dump($connexion);
     }
+    }
+
+
+
+    public function getNumber(){
+        $search=$this->db->prepare("SELECT * FROM articles");
+        $search->execute();
+        $searchcount=$search->rowcount($search);
+        return $searchcount;
     }
 //----------------------------menu deroulant pour categorie----------------------------------------------------
 

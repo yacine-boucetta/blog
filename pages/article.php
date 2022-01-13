@@ -1,36 +1,26 @@
-<?php 
+<?php
 
 require '../class/classArticles.php';
 
 $article = new Articles();
-$article->getArticle();
-var_dump($article);
+$ok = $article->getArticle();
 ?>
 
 <main class="container">
         <div class="row">
-            <section class="col-12">
-                <h1>Liste des articles</h1>
-                <table class="table">
-        <thead>
-            <th>Article</th>
-            <th>login</th>
-            <th>categorie</th>
-            <th>date</th>
-        </thead>
-        <tbody>
-            <tr>
-                <?php foreach($_SESSION['article'] as $key => $value){ 
-                    echo '<tr>';
-                    foreach ($value as $key1 => $value1) 
-                        {
-                            echo "<td>$value1</td>";
+                <section class="col-12">
+                        <h1>Liste des articles</h1>
+                        <?php
+                        $searchcount = new Articles();
+                        $searchn = $searchcount->getNumber();
+                        var_dump($searchn);
+                        for ($i = 0; $i < $searchn; $i++) {
+                                echo '<article>' .
+                                        $ok[$i]['article'] . '</br>' .
+                                        $ok[$i]['nom'] . '</br>' .
+                                        $ok[$i]['login'] . '</br>' .
+                                        $ok[$i]['date'] . '</br>
+                        </article>';
                         }
-                    echo '</tr>'; 
-                }
-                ?>
-        </tbody>
-    </table>
-            </section>
-        </div>
-    </main>
+                        ?>
+</main>
