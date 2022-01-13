@@ -8,16 +8,12 @@ $path_articles="pages/articles.php";
 $path_create="pages/creer-article.php";
 $path_admin="pages/admin.php";
 $path_deconnexion="pages/deconnexion.php";
-
+$path_article="article.php";
 
 require 'class/classArticles.php';
 
-var_dump($_SESSION['user']);
-
 $displayIndex = new Articles();
-$displayIndex->articleIndex();
-
-//var_dump($_SESSION['artIndex']);
+$dis=$displayIndex->articleIndex();
 
 require 'template/header.php';
 ?>
@@ -26,29 +22,19 @@ require 'template/header.php';
         <h1>Bienvenue sur Bloustache Overflow</h1>
         <p>lorem ipsum dolor sit amet, consectetur adip</p>
     </article>
-    <artcle>
-        <section>
-            <table>
-                <thead>
-                    <th>Articles</th>
-                    <th>Categorie</th>
-                    <th>Posté par</th>
-                    <th>Posté le</th>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach($_SESSION['artIndex'] as $key => $value){
-                            echo "<tr>";
-                            foreach($value as $key1 => $value2){
-                                echo '<td>'. $value2 .'<td>';
-                            }
-                            echo "</tr>";
-                        }
-                    ?>
-                </tbody>
-            </table>
-        </section>
-    </artcle>
+    <article>
+        <?php
+        for ($i = 0; $i < 3; $i++) {
+        $path_id=$dis[$i]['id'];
+        echo '<a href='.$path_article.'/?id='.$path_id.'><article>' .
+                        $dis[$i]['article'] . '</br>' .
+                        $dis[$i]['nom'] . '</br>' .
+                        $dis[$i]['login'] . '</br>' .
+                        $dis[$i]['date'] . '</br>
+        </article></a>';
+        }
+    ?>
+    </article>
 </main>
 <?php
 require 'template/footer.php';
