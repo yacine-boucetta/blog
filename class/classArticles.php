@@ -16,7 +16,7 @@ class Articles{
 
 //------------------------------affiche article-----------------
     public function getArticle(){
-        $new_art=$this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ");
+        $new_art=$this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date,articles.id FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ");
         $new_art->execute();
         $affichearticle=$new_art->fetchall(PDO::FETCH_ASSOC);
         return $affichearticle;
@@ -24,10 +24,10 @@ class Articles{
 //-------------------------------------Display article index------------------------------------------------------------------------------------------------
     public function articleIndex(){
 
-        $displayArticle = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date DESC LIMIT 3");
+        $displayArticle = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date,articles.id FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date DESC LIMIT 3");
         $displayArticle->execute();
         $display = $displayArticle->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['artIndex'] = $display;
+        return $display;
     }
 
 //------------------------------------------------------creer article-----------------------------------------------------
@@ -35,14 +35,13 @@ class Articles{
     public function createArticle(){
 
         if(isset($_GET['envoyer'])){
-            $peudo=$_SESSION['user']['id'];
+            $pseudo=$_SESSION['user']['id'];
             $get_id_cat=$_GET['cat'];
             $connexion=$this->db->prepare("SELECT id FROM categories WHERE nom=:cat");
             $connexion->execute(array(
                 ':cat'=>$get_id_cat
             ));
             $fetchid=$connexion->fetchall(PDO::FETCH_ASSOC);
-            var_dump($fetchid);
             $comment=htmlspecialchars($_GET['comment'],ENT_QUOTES);
             $connexion=$this->db->prepare("INSERT INTO `articles`(article, id_utilisateur,id_categorie,date) VALUES (:comment,:pseudo,:cat,:date)");
             $connexion->execute(array(
@@ -123,15 +122,24 @@ class Articles{
         return $result;
     }
 
-    // public function getNumb(){
-    //     $search2=$this->db->prepare("SELECT * FROM articles WHERE id = :id");
-    //     $search2->bindValue(':id', $_GET['id'], PDO::PARAM_STR);
-    //     $search2->execute();
-    //     $count=$search2->rowcount($search2);
-    //     return $count;
-    // }
+//------------------------------Pagination--------------------------------------------
 
+    public function getPagination($par_pages,$cpages){
+    $count=$this->db->prepare("SELECT COUNT FROM articles");
+    $count->execute();
+    $res=$count->fetch(PDO::FETCH_ASSOC);
+    $nb_pages= ceil($res/ $par_pages);
+    $limit=(($cpages-1)*$par_pages);
+
+    $pagination=$this->db->prepare("SELECT * FROM articles ORDER BY Date LIMIT :cpage,:pages");
+    $pagination->execute(array(
+            ':pages'=>$par_pages,
+            ':cpage'=>$limit
+    ));
+    $pag1=$pagination->fetch(PDO::FETCH_ASSOC);
+
+return" $ ";
 }
-
+}
 
 ?>

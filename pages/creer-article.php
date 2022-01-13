@@ -9,13 +9,12 @@ $path_create="creer-article.php";
 $path_admin="admin.php";
 $path_deconnexion="deconnexion.php";
 
-require_once '../class/classArticles.php';
-var_dump($_SESSION['user']);
+require '../class/classArticles.php';
 if(empty($_SESSION['user']) || $_SESSION['user']['id_droits'] == 1 || $_SESSION['user'] == ''){ 
     header('Location:../index.php');
 }
 ?>
-
+<?php require '../template/header.php';?>
 <form method='post' >
 <p>
 <?php

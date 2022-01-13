@@ -9,10 +9,14 @@ $path_create="creer-article.php";
 $path_admin="admin.php";
 $path_deconnexion="deconnexion.php";
 $path_article="article.php";
-require '../class/classArticles.php';
+
+
+require_once '../class/classArticles.php';
 
 $article = new Articles();
 $ok = $article->getArticle();
+
+
 ?>
 
 <main class="container">
@@ -22,9 +26,23 @@ $ok = $article->getArticle();
                         <?php
                         $searchcount = new Articles();
                         $searchn = $searchcount->getNumber();
-                        var_dump($searchn);
+
+                        $pagination= new Articles();
+                        $pag=$pagination->getPagination(5,1);
+                        for($i=1;$i<=$nb_pages;$i++){
+                                if($i==$cpages){
+                                echo " $i /";
+                                        
+                                }
+                                else{
+                                echo"<a href=\"index.php?p=$i\">$i</a>/";
+                        } 
+                        }
+                        
+                        
                         for ($i = 0; $i < $searchn; $i++) {
-                                echo '<a href='. $path_article.'><article>' .
+                                $path_id=$ok[$i]['id'];
+                                echo '<a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
                                         $ok[$i]['article'] . '</br>' .
                                         $ok[$i]['nom'] . '</br>' .
                                         $ok[$i]['login'] . '</br>' .
