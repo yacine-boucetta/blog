@@ -1,6 +1,6 @@
 <?php
 
-$path_index="../../../index.php";
+$path_index="../../index.php";
 $path_inscription="../../pages/inscription.php";
 $path_connexion="../../pages/connexion.php";
 $path_profil="../../pages/profil.php";
@@ -11,11 +11,16 @@ $path_deconnexion="../../pages/deconnexion.php";
 $path_article="../../pages/article.php";
 
 require_once '../class/classArticles.php';
-//require_once '../class/classCommentaire.php';
+require_once '../class/classCommentaire.php';
 var_dump($_GET['id']);
 
 $article = new Articles();
 $getById = $article -> getArticleById($_GET['id']);
+
+if(isset($_POST['submitCom'])){
+    $postComment = new Comment();
+    $postComment->addComment($_POST['comment'],$_GET['id'], $_SESSION['user']['id']);
+}
 
 var_dump($getById);
 
@@ -35,6 +40,30 @@ require_once '../template/header.php';
         $getById[$i]['date'] . '</br>
         </article></a>';
         }
+        ?>
+    </article>
+    <article>
+        <?php
+            if(isset($_GET['id'])){
+                $comment = new Comment();
+                $getComment = $comment -> displayComment($_GET['id']);
+                echo'<table>';
+                foreach($getComment as $key => $value){
+                    echo '<tr>';
+                    foreach($value as $key1 => $comment1){
+                        echo '<td>'. $comment1 .'</td>';
+                    }
+                    echo '</tr>';
+                }
+                echo'</table>';
+            }
+        ?>
+    </article>
+    <article>
+        <?php
+            if(isset($_SESSION['user'])){
+                require 'commentaire.php';
+            }
         ?>
     </article>
 </main>
