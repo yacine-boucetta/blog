@@ -132,15 +132,11 @@ class Articles
 
     public function getPagination($limit, $par_pages)
     {
-        var_dump($limit);
-        var_dump($par_pages);
         $pagination = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date,articles.id FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date LIMIT :limited, :par_pages");
         $pagination->bindParam(':limited', $limit, PDO::PARAM_INT);
         $pagination->bindParam(':par_pages', $par_pages, PDO::PARAM_INT);
         $pagination->execute();
-
         $p = $pagination->fetchall(PDO::FETCH_ASSOC);
-        var_dump($p);
         return $p;
     }
 }

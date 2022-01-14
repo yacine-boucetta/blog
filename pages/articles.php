@@ -28,13 +28,10 @@ require '../template/header.php';
 
                         $par_pages=5;
                         $nb_pages= ceil($searchn/$par_pages);
-                        
+                        // $_GET['p']=0;
                         $j=$_GET['p'];
                         for($i=0;$i<$nb_pages;$i++){
                                 echo"<a href=\"articles.php?p=$i\">$i</a>-";
-                        }
-                        if(empty($j)){
-                                $j=0;
                         }
                                 if(isset($_GET['p'])){
                                 
