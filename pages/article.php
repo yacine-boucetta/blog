@@ -4,7 +4,7 @@ $path_index="../../index.php";
 $path_inscription="../../pages/inscription.php";
 $path_connexion="../../pages/connexion.php";
 $path_profil="../../pages/profil.php";
-$path_articles="../../pages/articles.php";
+$path_articles="../../pages/articles.php?p=0";
 $path_create="../../pages/creer-article.php";
 $path_admin="../../pages/admin.php";
 $path_deconnexion="../../pages/deconnexion.php";
