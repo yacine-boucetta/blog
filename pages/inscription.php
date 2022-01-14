@@ -9,7 +9,7 @@ $path_create="creer-article.php";
 $path_admin="admin.php";
 $path_deconnexion="deconnexion.php";
 
-require '../class/classUser.php';
+require_once '../class/classUser.php';
 
 if(isset($_POST['sign_up'])){
 $inscription= new User();

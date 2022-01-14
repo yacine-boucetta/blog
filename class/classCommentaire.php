@@ -1,31 +1,32 @@
 <?php
-require 'db.php';
+//require 'db.php';
 
-class Comment{
+class Comment extends Articles{
     public $id;
     public $comment;
     public $idArcticle;
     public $idUser;
     public $date;
 
-    public function __construct(){
-        $this->db=connect();
-    }
+    // public function __construct(){
+    //     $this->db=connect();
+    // }
 
 //-----------------------------------------------AJOUTS COMMENTAIRE----------------------------------------------------------------
 
-    public function AddComment($comment, $idArcticle, $idUser, $date){
-
+    public function addComment($comment, $idArcticle, $idUser){
+        $errorLog ='';
         $secureComment=htmlspecialchars(trim($comment));
 
         if(!empty($secureComment)){
             $comLenght=strlen($secureComment);
 
             if($comLenght <= 240){
+                echo 'coucou';
                 $insertComment=$this->db->prepare("INSERT INTO commentaires(commentaire, id_article, id_utilisateur, date) VALUES (:commentaire, :id_article, :id_utilisateur, NOW())");
-                $insertComment->bindValues(':commentaire', $comment, PDO::PARAM_STR);
-                $insertComment->bindValues(':id_article', $idArcticle, PDO::PARAM_STR);
-                $insertComment->bindValues(':id_utilisateur', $idUser, PDO::PARAM_STR);
+                $insertComment->bindValue(':commentaire', $comment, PDO::PARAM_STR);
+                $insertComment->bindValue(':id_article', $idArcticle, PDO::PARAM_STR);
+                $insertComment->bindValue(':id_utilisateur', $idUser, PDO::PARAM_STR);
                 //$insertComment->bindValues(':date', strtotime (date ("d-m-Y H:i:s")), PDO::PARAM_STR);
                 $insertComment->execute();
 
@@ -37,23 +38,17 @@ class Comment{
         else{
             $errorLog = 'Le commentaire est vide.';
         }
+        return $errorLog;
     }
 //-----------------------------------------------------Display Comment--------------------------------------------------
 
-    public function displayComment(){
-        $disComment = $this->db->prepare("SELECT (commentaire, date, login) FROM commentaires INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur ORDER BY Date LIMIT 5");
+    public function displayComment($id){
+        $disComment = $this->db->prepare("SELECT commentaire, date, login FROM commentaires INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur WHERE id_article = :id ORDER BY DATE DESC LIMIT 5");
+        $disComment->bindValue(':id', $id, PDO::PARAM_STR);
         $disComment->execute();
         $result = $disComment->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['commentaire'] = $result;
+        return $result;
     }
 
-//-------------------------------------------------display comment by id ----------------------------------------------------------------
-
-    public function displayByID($id){
-        $commentId = $this->db->prepare("SELECT * FROM commentaire WHERE id = :id");
-        $commentId->execute();
-        $results = $commentId->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
 }
 ?>

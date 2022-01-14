@@ -10,7 +10,7 @@ $path_admin="admin.php";
 $path_deconnexion="deconnexion.php";
 
 
-require '../class/classAdmin.php';
+require_once '../class/classAdmin.php';
 var_dump($_SESSION['user']);
 
 if(empty($_SESSION['user']) || $_SESSION['user']['id_droits'] != 1337){

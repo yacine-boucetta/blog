@@ -1,5 +1,6 @@
 <?php
 require 'db.php';
+require 'classCommentaire.php';
 // $error='';
 class Articles
 {
@@ -33,7 +34,7 @@ class Articles
         return $display;
     }
 
-    //------------------------------creer article-----------------
+//------------------------------------------------------creer article-----------------------------------------------------
 
     public function createArticle()
     {
@@ -117,6 +118,14 @@ class Articles
         foreach ($tab as $value) {
             echo '<option values"' . $value[0] . '">' . $value[1] . '</option>';
         }
+    }
+//----------------------------------------------Article by ----------------------------------------------------------------
+    public function getArticleById($id){
+        $artById = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom, articles.id,date FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie WHERE articles.id = :id");
+        $artById->bindValue(':id', $_GET['id'], PDO::PARAM_STR);
+        $artById->execute();
+        $result = $artById->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     //------------------------------Pagination--------------------------------------------
