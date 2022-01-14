@@ -8,7 +8,7 @@ $path_articles="pages/articles.php";
 $path_create="pages/creer-article.php";
 $path_admin="pages/admin.php";
 $path_deconnexion="pages/deconnexion.php";
-$path_article="article.php";
+$path_article="pages/article.php";
 
 require 'class/classArticles.php';
 

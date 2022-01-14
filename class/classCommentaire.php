@@ -22,7 +22,6 @@ class Comment extends Articles{
             $comLenght=strlen($secureComment);
 
             if($comLenght <= 240){
-                echo 'coucou';
                 $insertComment=$this->db->prepare("INSERT INTO commentaires(commentaire, id_article, id_utilisateur, date) VALUES (:commentaire, :id_article, :id_utilisateur, NOW())");
                 $insertComment->bindValue(':commentaire', $comment, PDO::PARAM_STR);
                 $insertComment->bindValue(':id_article', $idArcticle, PDO::PARAM_STR);
