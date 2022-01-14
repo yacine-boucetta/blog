@@ -22,7 +22,7 @@
             <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href='<?= $path_index ?>'>Home<span class="sr-only">(current)</span></a>
-                <li><a class='nav-link' href='$path_articles'>Articles</a></li>
+                <li><a class='nav-link' href='<?=$path_articles?>'>Articles</a></li>
             </li>
             <li class="nav-item">
             <?php if (isset($_SESSION['user'])) 
