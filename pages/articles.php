@@ -15,8 +15,7 @@ require_once '../class/classArticles.php';
 
 $article = new Articles();
 $ok = $article->getArticle();
-
-
+require '../template/header.php';
 ?>
 
 <main class="container">
@@ -27,27 +26,33 @@ $ok = $article->getArticle();
                         $searchcount = new Articles();
                         $searchn = $searchcount->getNumber();
 
-                        $pagination= new Articles();
-                        $pag=$pagination->getPagination(5,1);
-                        for($i=1;$i<=$nb_pages;$i++){
-                                if($i==$cpages){
-                                echo " $i /";
-                                        
-                                }
-                                else{
-                               echo"<a href=\"index.php?p=$i\">$i</a>/";
-                        } 
+                        $par_pages=5;
+                        $nb_pages= ceil($searchn/$par_pages);
+                        
+                        $j=$_GET['p'];
+                        for($i=0;$i<$nb_pages;$i++){
+                                echo"<a href=\"articles.php?p=$i\">$i</a>-";
                         }
-                        
-                        
-                        for ($i = 0; $i < $searchn; $i++) {
-                                $path_id=$ok[$i]['id'];
-                                echo '<a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
-                                        $ok[$i]['article'] . '</br>' .
-                                        $ok[$i]['nom'] . '</br>' .
-                                        $ok[$i]['login'] . '</br>' .
-                                        $ok[$i]['date'] . '</br>
+                        if(empty($j)){
+                                $j=0;
+                        }
+                                if(isset($_GET['p'])){
+                                
+                                $limit=($j*$par_pages);
+                                $nb_pagination= new Articles();
+                                $var=$nb_pagination->getPagination($limit,$par_pages*($j+1));
+                                for($j=0;$j<5;$j++){ 
+                                        if (!isset($var[$j])){
+                                                return $j;
+                                        }
+                                        $path_id=$var[$j]['id'];
+                                        echo '<a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
+                                        $var[$j]['article'] . '</br>' .
+                                        $var[$j]['nom'] . '</br>' .
+                                        $var[$j]['login'] . '</br>' .
+                                        $var[$j]['date'] . '</br>
                         </article></a>';
+                                }
                         }
                         ?>
 </main>
