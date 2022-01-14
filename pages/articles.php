@@ -30,9 +30,7 @@ require '../template/header.php';
                         $nb_pages= ceil($searchn/$par_pages);
                         // $_GET['p']=0;
                         $j=$_GET['p'];
-                        for($i=0;$i<$nb_pages;$i++){
-                                echo"<a href=\"articles.php?p=$i\">$i</a>-";
-                        }
+                       
                                 if(isset($_GET['p'])){
                                 
                                 $limit=($j*$par_pages);
@@ -50,6 +48,9 @@ require '../template/header.php';
                                         $var[$j]['date'] . '</br>
                         </article></a>';
                                 }
+                        } 
+                        for($i=0;$i<$nb_pages;$i++){
+                                echo"<a href=\"articles.php?p=$i\">$i</a>-";
                         }
                         ?>
 </main>
