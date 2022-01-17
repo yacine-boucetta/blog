@@ -18,17 +18,18 @@
     <title>Document</title>
 </head>
     <header class="nav" id='navtoggle'>
-        <nav class="navbar navbar-expand-lg  " >
-        <h1 class="navbar-brand">Bloustache Overflow</h1>
+        <nav class="navbar navbar-expand-lg navbar-light " >
+        <h1 class="navbar-brand" ></h1>Bloustache Overflow</h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href='<?= $path_index ?>'>Home<span class="sr-only">(current)</span></a>
-                <li><a class='nav-link' href='<?=$path_articles?>'>Articles</a></li>
-            </li>
+            <li class="nav-item active" >
+                <a class="nav-link" href='<?= $path_index ?>' >Home<span class="sr-only">(current)</span></a>
+                <li>
+                    <li><a class="nav-link" href='<?=$path_articles?>' >Articles</a></li>
+           
             <li class="nav-item">
             <?php if (isset($_SESSION['user'])) 
                     {
