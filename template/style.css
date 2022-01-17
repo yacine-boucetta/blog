@@ -43,6 +43,7 @@ main{
   margin: 3%;
   box-sizing: border-box;
   background: #1D3557;
+  color: white;
   
 }
 
@@ -102,4 +103,26 @@ button:hover {
   text-decoration: none;
   color: white;
   
+}
+
+/* /----------------------------------------------/ */
+#artCom{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+#tabCom{
+    border: 1px solid black;
+    padding: 5px;
+    border-collapse: collapse;
+    text-align: center;
+    background-color:rgba(0, 0, 0, 0.9);
+    width: 100%;
+}
+.tdCom{
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background: #1D3557;
+  color: white;
 }

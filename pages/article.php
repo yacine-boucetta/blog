@@ -26,7 +26,7 @@ require_once '../template/header.php';
 ?>
 
 <main class="container">
-    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid tempore iure accusamus consequatur</h1>
+    <h1>Article</h1>
     <article> 
         
         <?php
@@ -45,11 +45,11 @@ require_once '../template/header.php';
             if(isset($_GET['id'])){
                 $comment = new Comment();
                 $getComment = $comment -> displayComment($_GET['id']);
-                echo"<table id='TabCom'>";
+                echo"<table id='tabCom'>";
                 foreach($getComment as $key => $value){
-                    echo '<tr>';
+                    echo "<tr class='trCom'>";
                     foreach($value as $key1 => $comment1){
-                        echo '<td>'. $comment1 .'</td>';
+                        echo "<td class='tdCom'>". $comment1 .'</td>';
                     }
                     echo '</tr>';
                 }
