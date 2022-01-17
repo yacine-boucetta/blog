@@ -20,7 +20,7 @@
             </a>
             <!-- Google +-->
             <a class="gplus-ic">
-            <i class="fab fa-google-plus-g white-text mr-4"> </i>
+            <i href=> </i>
             </a>
             <!--Linkedin -->
             <a class="li-ic">

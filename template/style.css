@@ -13,18 +13,10 @@ body {
   background-color: #A8DADC;
 }
 
+main{
+  min-height: 82.5vh;
+}
 
-.nav {
-  color: #fff;
-  text-decoration: none;
-}
-.nav ul{
-  color: #fff;
-  text-decoration: none;
-}
-.banner{
-  color: white;
-}
 
 .testbox a, .item, h2{
   text-decoration: none;
@@ -38,6 +30,7 @@ body {
 
 .testbox {
   position: relative;
+  top:20%;
   left:50%;
   transform: translateX(-50%);
   font-size: 0.75em;
@@ -79,7 +72,6 @@ input::placeholder {
 }
 
 input {
- 
   padding: 10px;
   padding-left: 20px;
   height: 50px;

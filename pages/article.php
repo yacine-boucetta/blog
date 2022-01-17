@@ -28,6 +28,7 @@ require_once '../template/header.php';
 <main class="container">
     <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid tempore iure accusamus consequatur</h1>
     <article> 
+        
         <?php
     for ($i = 0; $i < 1; $i++) {
         echo '<form method=post class='.'testbox'.'><article>' .
