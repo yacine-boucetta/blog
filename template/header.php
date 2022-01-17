@@ -15,8 +15,8 @@
 
     <title>Document</title>
 </head>
-    <header class="nav">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" id='navtoggle'>
+    <header class="nav" id='navtoggle'>
+        <nav class="navbar navbar-expand-lg  " >
         <h1 class="navbar-brand">Bloustache Overflow</h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,6 @@
             </div>
             </li>
             </ul>
-        </div>
         </nav>
     </header>
 <body>
