@@ -13,12 +13,9 @@ body {
   justify-content:space-between;
 }
 .nav ul {
-  background-color: none;
-}
-.navbar navbar-expand-lg navbar-light bg-light{
   background: #457B9D;
-
 }
+
 #navtoggle{
   background: #457B9D;
 }
