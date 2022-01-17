@@ -15,34 +15,43 @@ if(empty($_SESSION['user']) || $_SESSION['user']['id_droits'] == 1 || $_SESSION[
 }
 ?>
 <?php require '../template/header.php';?>
-<form method='post' >
+<form method='post'  class='testbox'>
 <p>
 <?php
     $creat_art= new Articles;
     $creat_art->createCat() ;
     $creat_art->createArticle();?> 
 </p>
-
+<div  class='item'>
 <input  type="text" name="categorie"  placeholder="créer une catégorie">
+</div>
+
+<div  class='item'>
 <input type='submit' name='verifier'value='verifier' />
+</div>
+
 </form>
 
-<form method='get' >
+<form method='get' class='testbox'>
 
 <p>écrivez un article</p>
 
+<div  class='item'>
 <select name='cat'>
     <?php
         $menu= new Articles;
         $menu->displayCat();
     ?>
 </select> 
+</div>
 
+<div  class='item'>
 <p>
     Pseudo :<?php echo $_SESSION['user']['login']; ?><input name='pseudo' value='<?php echo $_SESSION['user']['id'] ?>' type='hidden' >  <br />
     article :<br />
     <textarea name='comment' rows='20' cols='60' style='resize:none'></textarea><br />
     <input type='submit' name='envoyer'value='envoyer' />
 </p>
-
+</div>
 </form>
+<?php require '../template/footer.php';?>

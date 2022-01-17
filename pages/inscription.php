@@ -20,7 +20,7 @@ $inscription->user_inscription($_POST['login'],$_POST['password'],$_POST['passwo
 
 
 <?php require '../template/header.php';?>
-
+<main class="container">
 <div class="testbox">
     <form class="sign" method="post" >
     <h2>Inscription</h2>
@@ -52,5 +52,6 @@ $inscription->user_inscription($_POST['login'],$_POST['password'],$_POST['passwo
 </div>
 </form>
 </div>
+</main>
 <?php require '../template/footer.php';?>
 

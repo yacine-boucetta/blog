@@ -12,7 +12,6 @@ $path_article="../../pages/article.php";
 
 require_once '../class/classArticles.php';
 require_once '../class/classCommentaire.php';
-var_dump($_GET['id']);
 
 $article = new Articles();
 $getById = $article -> getArticleById($_GET['id']);
@@ -22,23 +21,21 @@ if(isset($_POST['submitCom'])){
     $postComment->addComment($_POST['comment'],$_GET['id'], $_SESSION['user']['id']);
 }
 
-var_dump($getById);
-
 require_once '../template/header.php';
 
 ?>
 
-<main>
+<main class="container">
     <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid tempore iure accusamus consequatur</h1>
     <article> 
         <?php
     for ($i = 0; $i < 1; $i++) {
-        echo '<article>' .
+        echo '<form method=post class='.'testbox'.'><article>' .
         $getById[$i]['article'] . '</br>' .
         $getById[$i]['nom'] . '</br>' .
         $getById[$i]['login'] . '</br>' .
         $getById[$i]['date'] . '</br>
-        </article></a>';
+        </article></a><form>';
         }
         ?>
     </article>
@@ -67,6 +64,4 @@ require_once '../template/header.php';
         ?>
     </article>
 </main>
-<?php
-require_once '../template/header.php';
-?>
+<?php require '../template/footer.php';?>

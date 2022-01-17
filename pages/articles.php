@@ -19,8 +19,7 @@ require '../template/header.php';
 ?>
 
 <main class="container">
-        <div class="row">
-                <section class="col-12">
+                
                         <h1>Liste des articles</h1>
                         <?php
                         $searchcount = new Articles();
@@ -28,9 +27,7 @@ require '../template/header.php';
 
                         $par_pages=5;
                         $nb_pages= ceil($searchn/$par_pages);
-                        // $_GET['p']=0;
                         $j=$_GET['p'];
-                       
                                 if(isset($_GET['p'])){
                                 
                                 $limit=($j*$par_pages);
@@ -41,12 +38,12 @@ require '../template/header.php';
                                                 return $j;
                                         }
                                         $path_id=$var[$j]['id'];
-                                        echo '<a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
+                                        echo '<form method=post class='.'testbox'.'><a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
                                         $var[$j]['article'] . '</br>' .
                                         $var[$j]['nom'] . '</br>' .
                                         $var[$j]['login'] . '</br>' .
                                         $var[$j]['date'] . '</br>
-                        </article></a>';
+                        </article></a></br></form>';
                                 }
                         } 
                         for($i=0;$i<$nb_pages;$i++){
@@ -54,3 +51,4 @@ require '../template/header.php';
                         }
                         ?>
 </main>
+<?php require '../template/footer.php';?>
