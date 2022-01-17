@@ -39,12 +39,12 @@ require_once '../template/header.php';
         }
         ?>
     </article>
-    <article>
+    <article id='artCom'>
         <?php
             if(isset($_GET['id'])){
                 $comment = new Comment();
                 $getComment = $comment -> displayComment($_GET['id']);
-                echo'<table>';
+                echo"<table id='TabCom'>";
                 foreach($getComment as $key => $value){
                     echo '<tr>';
                     foreach($value as $key1 => $comment1){
