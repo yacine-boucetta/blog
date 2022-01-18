@@ -50,7 +50,7 @@ public function user_inscription($login,$password,$password2,$email) {
 }
 
 //----------------------------------connexion--------------------------
-public function user_connexion() {
+public function user_connexion($login,$password) {
 
     if(isset($_POST['sign_in'])){
         $login = htmlspecialchars($_POST['login'], ENT_QUOTES, "ISO-8859-1"); 
