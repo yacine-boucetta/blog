@@ -38,7 +38,9 @@
 
     </div>
     </div>
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <div>
+            <a href='https://github.com/yacine-boucetta/blog'>Repo Git-hub</a>
+        </div>
 
     </footer>
 
