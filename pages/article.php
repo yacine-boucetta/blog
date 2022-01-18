@@ -16,9 +16,25 @@ require_once '../class/classCommentaire.php';
 $article = new Articles();
 $getById = $article -> getArticleById($_GET['id']);
 
+$getInfo =  new Articles();
+$getInfo->getOneArticle($_GET['id']);
+
+var_dump($_SESSION['article']);
+
+
 if(isset($_POST['submitCom'])){
     $postComment = new Comment();
     $postComment->addComment($_POST['comment'],$_GET['id'], $_SESSION['user']['id']);
+}
+if(isset($_POST['delete'])){
+    $deleteCom = new Articles();
+    $deleteCom->deleteArt($_GET['id']);
+    header('Location: ../../index.php');
+}
+if(isset($_POST['updateArticle'])){
+    $updateCom = new Articles();
+    $updateCom->updateArt($_GET['id'], $_POST['updateArt'], $_POST['cat']);
+    //header('Location: ../../index.php');
 }
 
 require_once '../template/header.php';
@@ -57,6 +73,11 @@ require_once '../template/header.php';
             }
         ?>
     </article>
+    <?php
+        if(isset($_SESSION['user'])){
+            require 'deleteArticle.php';
+        }
+    ?>
     <article>
         <?php
             if(isset($_SESSION['user'])){

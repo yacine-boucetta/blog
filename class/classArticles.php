@@ -139,4 +139,35 @@ class Articles
         $p = $pagination->fetchall(PDO::FETCH_ASSOC);
         return $p;
     }
+    //-----------------------------------DELETE Article------------------------------------------------------------------------------------------------
+    public function deleteArt($id){
+        $delete = $this->db->prepare("DELETE FROM articles WHERE id = :id ");
+        $delete->bindValue(':id', $id, PDO::PARAM_STR);
+        $delete->execute();
+    }
+    //----------------------------------Update article----------------------------------------------------------------------------------------------------------------
+    public function getOneArticle($id){
+
+        $getArticle = $this->db->prepare("SELECT * FROM articles WHERE id = :id ");
+        $getArticle->bindValue(':id', $id, PDO::PARAM_STR);
+        $getArticle->execute();
+        $getArt = $getArticle->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['article'] = $getArt;
+    }
+
+    public function updateArt($id, $article, $cat){
+
+        if(empty($_POST['updateArt'])){
+            $article = $_SESSION['article']['0']['article'];
+        }
+        if(empty($_POST['cat'])){
+            $cat = $_SESSION['article']['0']['id_categorie'];
+        }
+
+        $update = $this->db->prepare("UPDATE `articles` SET article = ':article', id_categorie = ':categories' WHERE id = ':id'");
+        $update->bindValue(':id', $id, PDO::PARAM_INT);
+        $update->bindValue(':article', $article, PDO::PARAM_STR);
+        $update->bindValue(':categories', $cat, PDO::PARAM_STR);
+        $update->execute();
+    }
 }
