@@ -19,7 +19,7 @@ $getById = $article -> getArticleById($_GET['id']);
 $getInfo =  new Articles();
 $getInfo->getOneArticle($_GET['id']);
 
-var_dump($_SESSION['article']['0']['id']);
+//var_dump($_SESSION['article']['0']['id']);
 
 
 if(isset($_POST['submitCom'])){
