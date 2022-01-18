@@ -4,7 +4,9 @@
         <button type='submit' name="delete" >Effacer</input>
     </div>
     </form>
-    </article>
+    </article
+    
+    >
     <article>
     <form method="post">
     <select name='cat'>
