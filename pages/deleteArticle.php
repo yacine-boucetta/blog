@@ -1,14 +1,5 @@
 <article>
-    <form method="post">
-    <div class='btn-block'>
-        <button type='submit' name="delete" >Effacer</input>
-    </div>
-    </form>
-    </article
-    
-    >
-    <article>
-    <form method="post">
+    <form method="post" class='testbox'>
     <select name='cat'>
         <?php
             $menu= new Articles;
@@ -19,5 +10,8 @@
         <div class='btn-block'>
         <button type='submit' name="updateArticle" value='Update'>Update</input>
         </div>
+        <div class='btn-block'>
+        <button type='submit' name="delete" >Effacer</input>
+    </div>
     </form>
 </article>
