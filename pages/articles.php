@@ -18,37 +18,39 @@ $ok = $article->getArticle();
 require '../template/header.php';
 ?>
 
-<main class="container">
+<main >
                 
                         <h1>Liste des articles</h1>
                         <?php
                         $searchcount = new Articles();
                         $searchn = $searchcount->getNumber();
-
                         $par_pages=5;
                         $nb_pages= ceil($searchn/$par_pages);
                         $j=$_GET['p'];
                                 if(isset($_GET['p'])){
                                 
                                 $limit=($j*$par_pages);
-                                $nb_pagination= new Articles();
-                                $var=$nb_pagination->getPagination($limit,$par_pages*($j+1));
-                                for($j=0;$j<5;$j++){ 
-                                        if (!isset($var[$j])){
-                                                return $j;
-                                        }
+                                $var=$searchcount ->getPagination($limit,$par_pages*($j+1));
+                                for($j=0;$j<COUNT($var);$j++){ 
                                         $path_id=$var[$j]['id'];
-                                        echo '<form method=post class='.'testbox'.'><a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
+                                        echo '<div class='.'testbox'.'><a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
                                         $var[$j]['article'] . '</br>' .
                                         $var[$j]['nom'] . '</br>' .
                                         $var[$j]['login'] . '</br>' .
                                         $var[$j]['date'] . '</br>
-                        </article></a></br></form>';
+                        </article></a></br></div>';
                                 }
                         } 
                         for($i=0;$i<$nb_pages;$i++){
-                                echo"<a href=\"articles.php?p=$i\">$i</a>-";
+                                $k=$i+1;
+                                if($i==$nb_pages-1){
+                                        echo"<a href=\"articles.php?p=$i\">$k</a>";
+                                }
+                                else{
+                                echo"<a href=\"articles.php?p=$i\">$k</a>-";
                         }
+                        }
+                        
                         ?>
 </main>
 <?php require '../template/footer.php';?>

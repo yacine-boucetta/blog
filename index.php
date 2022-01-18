@@ -18,8 +18,13 @@ $dis=$displayIndex->articleIndex();
 require 'template/header.php';
 ?>
 <main>
+    <div class="title_banner">
+    <h1>Bienvenue sur Bloustache Overflow</h1>
+    <img src="front/ressources/mustach.png" alt='logo'>
+</div>
+    </nav>
+
     <article>
-        <h1>Bienvenue sur Bloustache Overflow</h1>
         <p>La référence de la barbe et de la moustache</p>
         <p>les poilus bienvenue</p>
     </article>
@@ -27,12 +32,12 @@ require 'template/header.php';
         <?php
         for ($i = 0; $i < 3; $i++) {
         $path_id=$dis[$i]['id'];
-        echo '<form method=post class='.'testbox'.'><a href='.$path_article.'/?id='.$path_id.'><article>' .
+        echo '<div class='.'testbox'.'><a href='.$path_article.'/?id='.$path_id.'><article>' .
                         $dis[$i]['article'] . '</br>' .
                         $dis[$i]['nom'] . '</br>' .
                         $dis[$i]['login'] . '</br>' .
                         $dis[$i]['date'] . '</br>
-        </article></a></form>';
+        </article></a></div>';
         }
     ?>
     </article>

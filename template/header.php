@@ -19,7 +19,7 @@
 </head>
     <header class="nav" id='navtoggle'>
         <nav class="navbar navbar-expand-lg navbar-light " >
-        <h1 class="navbar-brand" ></h1>Bloustache Overflow</h1>
+        <h1 class="navbar-brand" >Bloustache Overflow</h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,12 +29,11 @@
                 <a class="nav-link" href='<?= $path_index ?>' >Home<span class="sr-only">(current)</span></a>
                 <li>
                     <li><a class="nav-link" href='<?=$path_articles?>' >Articles</a></li>
-           
             <li class="nav-item">
             <?php if (isset($_SESSION['user'])) 
                     {
                         echo
-                        "
+                        "   
                         <li><a class='nav-link' href='$path_profil'>Profil</a></li>
                         <li><a class='nav-link' href='$path_deconnexion'>Deconnexion</a></li>
                         ";

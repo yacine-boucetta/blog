@@ -11,16 +11,11 @@ $path_deconnexion="deconnexion.php";
 
 
 require_once '../class/classAdmin.php';
-var_dump($_SESSION['user']);
 
 if(empty($_SESSION['user']) || $_SESSION['user']['id_droits'] != 1337){
     header('Location:../index.php');
 }
 
-// $oldlogin = $_POST['moddingUser'];
-// $newDroit = $_POST['droitUser'];
-
-//var_dump($newDroit);
 
 if(isset($_POST['sign_up'])){
     $registerNewUser = new Admin();
@@ -38,10 +33,10 @@ if(isset($_POST['deleteUser'])){
 //var_dump($oldlogin);
 require '../template/header.php';
 ?>
-<main>
+<main> 
+    <div class="testbox">
     <article>
-        <div class="testbox">
-            <form class="sign" method="post" >
+            <form  method="post" >
                 <h2>Inscription</h2>
                 <div class="item">
                     <label for="name">Login<span>*</span></label>
@@ -71,23 +66,24 @@ require '../template/header.php';
                 <div class="btn-block">
                     <button name='sign_up'type="submit" href="/">sign up</button>
                 </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </article>
+    <div class="testbox">
     <article>
-        <h2>Modification de User</h2>
+        <h2>Modification de l'utilisateur</h2>
                             <form id="add_user" action="" method="POST">
+                            <label for="UpdateLog">Login</label>
+                               
+
                                 <select name="moddingUser">
                                     <?php
                                     $article = new Admin();
                                     $article->getDisplay();
                                     ?>
                                 </select>
-
-                                <label for="UpdateLog">Login</label>
-                                <input type="text" name="UpdateLog">
-
+ <input type="text" name="UpdateLog">
                                 <label for="UpdateMail">E-Mail:</label>
                                 <input type="eMail" name="UpdateMail">
 
@@ -103,11 +99,17 @@ require '../template/header.php';
                                     $droits->displayChoice();
                                     ?>
                                 </select>
-
-                                <input type="submit" name="mod" value="Envoyer">
-                                <input type="submit" name="deleteUser" value="Supprimer">
+                                <div class="btn-block">
+                                <button name='mod'type="submit" value="Envoyer" href="/">envoyer</button>
+                                <!-- <input type="submit" name="mod" value="Envoyer"> -->
+                                </div>
+                                <div class="btn-block">
+                                <button name="deleteUser"type="submit" value="Supprimer"" href="/">Supprimer</button>
+                                <!-- <input type="submit" name="deleteUser" value="Supprimer"> -->
+</div>
                             </form>
     </article>
+</div>
 </main>
 
 <?php

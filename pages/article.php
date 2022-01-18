@@ -31,12 +31,12 @@ require_once '../template/header.php';
         
         <?php
     for ($i = 0; $i < 1; $i++) {
-        echo '<form method=post class='.'testbox'.'><article>' .
+        echo '<div class='.'testbox'.'><article>' .
         $getById[$i]['article'] . '</br>' .
         $getById[$i]['nom'] . '</br>' .
         $getById[$i]['login'] . '</br>' .
         $getById[$i]['date'] . '</br>
-        </article></a><form>';
+        </article></a><div>';
         }
         ?>
     </article>
