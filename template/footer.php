@@ -11,25 +11,25 @@
 
         <div class="col-md-6 col-lg-7 text-center text-md-right">
 
-            <a class="fb-ic">
-            <i class="fab fa-facebook-f white-text mr-4"> </i>
-            </a>
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a href="#" class="fa fa-facebook"></a>
+
             <!-- Twitter -->
-            <a class="tw-ic">
-            <i class="fab fa-twitter white-text mr-4"> </i>
-            </a>
-            <!-- Google +-->
-            <a class="gplus-ic">
-            <i href=> </i>
-            </a>
-            <!--Linkedin -->
-            <a class="li-ic">
-            <i class="fab fa-linkedin-in white-text mr-4"> </i>
-            </a>
-            <!--Instagram-->
-            <a class="ins-ic">
-            <i class="fab fa-instagram white-text"> </i>
-            </a>
+            <a href="#" class="fa fa-twitter"></a>
+
+            <!-- Google -->
+            <a href="#" class="fa fa-google"></a>
+
+            <!-- Instagram -->
+            <a href="#" class="fa fa-instagram"></a>
+
+            <!-- Linkedin -->
+            <a href="#" class="fa fa-linkedin"></a>
+
+            <!-- Github -->
+            <a href="#" class="fa fa-reddit"></a>
+    </section>
 
         </div>
 
