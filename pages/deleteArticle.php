@@ -16,6 +16,8 @@
         ?>
     </select> 
         <textarea name='updateArt' rows='10' cols='60' style='resize:none' placeholder="Modification d'article"></textarea><br/>
-        <input type='submit' name='updateArticle'value='Update'/>
+        <div class='btn-block'>
+        <button type='submit' name="updateArticle" value='Update'>Update</input>
+        </div>
     </form>
 </article>
