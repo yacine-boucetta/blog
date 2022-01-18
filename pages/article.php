@@ -41,7 +41,7 @@ require_once '../template/header.php';
 
 ?>
 
-<main class="container">
+<main >
     <h1>Article</h1>
     <article> 
         
