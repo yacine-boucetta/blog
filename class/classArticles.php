@@ -162,7 +162,7 @@ class Articles
             $article = $_SESSION['article']['0']['article'];
         }
         if(empty($_POST['cat'])){
-            $cat = $_SESSION['article']['id_categorie'];
+            $cat = $_SESSION['article']['0']['id_categorie'];
         }
 
         $update = $this->db->prepare(
