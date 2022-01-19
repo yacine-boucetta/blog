@@ -163,12 +163,10 @@ class Articles
         if(empty($_POST['cat'])){
             $cat = $_SESSION['article']['0']['id_categorie'];
         }
-        echo 'coucou';
         $update = $this->db->prepare("UPDATE `articles` SET article = ':article', id_categorie = ':categories' WHERE id = ':id'");
         $update->bindValue(':id', $id, PDO::PARAM_INT);
         $update->bindValue(':article', $article, PDO::PARAM_STR);
         $update->bindValue(':categories', $cat, PDO::PARAM_STR);
         $update->execute();
-        echo 'sadge';
     }
 }
