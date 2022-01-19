@@ -156,18 +156,26 @@ class Articles
     }
 
     public function updateArt($id, $article, $cat){
-
+        $id=(int)$id;
+        $cat=(int)$cat;
         if(empty($_POST['updateArt'])){
             $article = $_SESSION['article']['0']['article'];
         }
         if(empty($_POST['cat'])){
-            $cat = $_SESSION['article']['0']['id_categorie'];
+            $cat = $_SESSION['article']['id_categorie'];
         }
 
-        $update = $this->db->prepare("UPDATE `articles` SET article = ':article', id_categorie = ':categories' WHERE id = ':id'");
-        $update->bindValue(':id', $id, PDO::PARAM_INT);
-        $update->bindValue(':article', $article, PDO::PARAM_STR);
-        $update->bindValue(':categories', $cat, PDO::PARAM_STR);
-        $update->execute();
+        $update = $this->db->prepare(
+        "UPDATE articles
+        SET article = :article , id_categorie = :categories 
+        WHERE id = :id");
+
+        $test=$update->execute(array(
+            ':id' =>$id, 
+            ':categories' =>$cat,
+            'article'=>$article
+        ));
+        var_dump($id);
+        var_dump($test);
     }
 }
