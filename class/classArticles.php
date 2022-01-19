@@ -155,6 +155,14 @@ class Articles
         $_SESSION['article'] = $getArt;
     }
 
+    public function getIdCat($nom){
+        $getIdCat = $this->db->prepare("SELECT id FROM categories WHERE nom = :nom ");
+        $getIdCat->bindValue(':nom', $nom, PDO::PARAM_STR);
+        $getIdCat->execute();
+        $getId = $getIdCat->fetchAll(PDO::FETCH_ASSOC);
+        return $getId;
+    }
+
     public function updateArt($id, $article, $cat){
         $id=(int)$id;
         $cat=(int)$cat;
@@ -175,7 +183,7 @@ class Articles
             ':categories' =>$cat,
             'article'=>$article
         ));
-        var_dump($id);
-        var_dump($test);
+        // var_dump($id);
+        // var_dump($test);
     }
 }

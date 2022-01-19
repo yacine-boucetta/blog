@@ -19,7 +19,11 @@ $getById = $article -> getArticleById($_GET['id']);
 $getInfo =  new Articles();
 $getInfo->getOneArticle($_GET['id']);
 
-
+if(isset($_POST['updateArticle'])){
+$getCatId = new Articles();
+$categ = $getCatId->getIdCat($_POST['cat']);
+}
+//var_dump($_SESSION['article']);
 
 
 if(isset($_POST['submitCom'])){
@@ -33,8 +37,8 @@ if(isset($_POST['delete'])){
 }
 if(isset($_POST['updateArticle'])){
     $updateCom = new Articles();
-    $updateCom->updateArt((int) $_GET['id'], $_POST['updateArt'], $_POST['cat']);
-    // header('Location: ../../index.php');
+    $updateCom->updateArt((int) $_GET['id'], $_POST['updateArt'], $categ);
+    header('Location: ../../index.php');
     
 
 }

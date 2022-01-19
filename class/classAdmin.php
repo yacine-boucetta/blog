@@ -80,6 +80,7 @@ public function registerNewUser($login, $password, $email, $id_droits){
 //-----------------------------------------------------UPDATE USER --------------------------------------------------------------------
 public function UpdateNewUser($old_login, $login, $email, $password, $confirmPW,$idDroits){
 
+    $error_log = "";
     $login     = htmlspecialchars(trim($login));
     $email     = htmlspecialchars(trim($email));
     $password  = htmlspecialchars(trim($password));
@@ -99,11 +100,8 @@ public function UpdateNewUser($old_login, $login, $email, $password, $confirmPW,
         }
         else{ $error_log = "veuillez remplir les champs";
         }
-    
-    
-    if (isset ($error_log)) {
-        return $error_log;
-}}
+        echo $error_log;
+}
 //------------------------------------------------------------DELETE USER ------------------------------------------------------------
 public function deleteUser($login)
 {
