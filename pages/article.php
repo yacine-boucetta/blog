@@ -42,7 +42,7 @@ if(isset($_POST['updateArticle'])){
     
 
 }
-var_dump($_GET['cat']);
+
 require_once '../template/header.php';
 
 ?>
