@@ -19,7 +19,7 @@ $getById = $article -> getArticleById($_GET['id']);
 $getInfo =  new Articles();
 $getInfo->getOneArticle($_GET['id']);
 
-//var_dump($_SESSION['article']['0']['id']);
+
 
 
 if(isset($_POST['submitCom'])){
@@ -33,8 +33,10 @@ if(isset($_POST['delete'])){
 }
 if(isset($_POST['updateArticle'])){
     $updateCom = new Articles();
-    $updateCom->updateArt($_GET['id'], $_POST['updateArt'], $_POST['cat']);
-    //header('Location: ../../index.php');
+    $updateCom->updateArt((int) $_GET['id'], $_POST['updateArt'], $_POST['cat']);
+    // header('Location: ../../index.php');
+    
+
 }
 
 require_once '../template/header.php';
