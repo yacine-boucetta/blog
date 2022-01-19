@@ -24,6 +24,7 @@ if(isset($_POST['sign_up'])){
 if(isset($_POST['mod'])){
     $modUser = new Admin();
     $modUser -> UpdateNewUser($_POST['moddingUser'],$_POST['UpdateLog'],$_POST['UpdateMail'],$_POST['updatePW'], $_POST['updateCPW'], $_POST['droitUser']);
+    
 }
 if(isset($_POST['deleteUser'])){
     $deleteUser = new Admin();
