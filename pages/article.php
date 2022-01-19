@@ -24,7 +24,7 @@ $getInfo->getOneArticle($_GET['id']);
 
 if(isset($_POST['submitCom'])){
     $postComment = new Comment();
-    $postComment->addComment($_POST['comment'],$_GET['id'], $_SESSION['article']['0']['id']);
+    $postComment->addComment($_POST['comment'],$_GET['id'], $_SESSION['user']['id']);
 }
 if(isset($_POST['delete'])){
     $deleteCom = new Articles();
