@@ -46,7 +46,7 @@ if(isset($_GET['tri'])){
         for($j=0;$j<COUNT($pagi);$j++){ 
                 $path_id=$pagi[$j]['id'];
                 
-                echo '<div class='.'testbox'.'><a href='.$path_article.'/?cat='.$path_id.' ><article>' .'</br>' .
+                echo '<div class='.'testbox'.'><a href='.$path_article.'?p='.$j.'/?cat='.$path_id.' ><article>' .'</br>' .
                 $pagi[$j]['article'] . '</br>' .
                 $pagi[$j]['nom'] . '</br>' .
                 $pagi[$j]['login'] . '</br>' .
