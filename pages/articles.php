@@ -31,25 +31,21 @@ require '../template/header.php';
         ?>
         </select>
 
-        <input type='submit' name="tri" valu=''>trier</input>
+        <input type='submit' name="tri" ></input>
 </form>
 <?php
 
 if(isset($_GET['tri'])){
         $tri = new Articles();
         $triage = $tri->getArticleByCategory($_GET['cat']); 
-        var_dump($triage);
         $countcat=COUNT($triage);
         $par_pages=5;
         $nb_pages= ceil($countcat/$par_pages);
-        var_dump($nb_pages);
-         //----------ok------------------------
         $limit=(($nb_pages-1)*$par_pages);
         $pagi = $tri->getPaginationCat($limit,$par_pages*($nb_pages), $_GET['cat']);
-        var_dump($pagi);
         for($j=0;$j<COUNT($pagi);$j++){ 
                 $path_id=$pagi[$j]['id'];
-                var_dump($path_id);
+                
                 echo '<div class='.'testbox'.'><a href='.$path_article.'/?cat='.$path_id.' ><article>' .'</br>' .
                 $pagi[$j]['article'] . '</br>' .
                 $pagi[$j]['nom'] . '</br>' .
@@ -66,8 +62,6 @@ for($i=0;$i<$nb_pages;$i++){
         else{
         echo"<a href=\"articles.php?p=$i\">$k</a>-";
 }
-
-var_dump($pagi);
 }
 }
 else{

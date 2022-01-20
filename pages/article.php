@@ -39,7 +39,7 @@ if(isset($_POST['delete'])){
 if(isset($_POST['updateArticle'])){
     $updateCom = new Articles();
     $updateCom->updateArt((int) $_GET['id'], $_POST['updateArt'], $_POST['cat']);
-    //header('Location: ../../index.php');
+    header('Location: ../../index.php');
     
 
 }
