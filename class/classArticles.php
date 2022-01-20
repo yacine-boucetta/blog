@@ -116,7 +116,7 @@ class Articles
         $choice = new Articles();
         $tab = $choice->selectCat();
         foreach ($tab as $value) {
-            echo '<option values"' . $value[0] . '">' . $value[1] . '</option>';
+            echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
         }
     }
 //----------------------------------------------Article by ----------------------------------------------------------------
