@@ -37,7 +37,7 @@ require '../template/header.php';
 <?php
 if(isset($_GET['tri'])){
         $tri = new Articles();
-        // $nom = $tri->getIdCat($_GET['cat']);
+        $nom = $tri->getIdCat($_GET['cat']);
         $triage = $tri->getArticleByCategory($nom); 
         $countcat=COUNT($triage);
         $par_pages=5;
