@@ -26,35 +26,38 @@ require '../template/header.php';
                         <form method="GET">
                         <select name='cat'>
         <?php
-            $menu= new Articles;
-            $menu->displayCat();
-            $varible = $menu->getIdCat($_GET['cat']);
+                $menu= new Articles;
+                $menu->displayCat();
         ?>
         </select>
 
-        <input type='submit' name="tri" >trier</input>
+        <input type='submit' name="tri" valu=''>trier</input>
 </form>
 <?php
+
 if(isset($_GET['tri'])){
         $tri = new Articles();
-        $nom = $tri->getIdCat($_GET['cat']);
-        $triage = $tri->getArticleByCategory($nom); 
+        $triage = $tri->getArticleByCategory($_GET['cat']); 
+        var_dump($triage);
         $countcat=COUNT($triage);
         $par_pages=5;
         $nb_pages= ceil($countcat/$par_pages);
-        $j=$_GET['p'];
-        $limit=($j*$par_pages);
-        $pagi = $tri->getPaginationCat($limit,$par_pages*($j+1), $nom);
+        var_dump($nb_pages);
+         //----------ok------------------------
+        $limit=(($nb_pages-1)*$par_pages);
+        $pagi = $tri->getPaginationCat($limit,$par_pages*($nb_pages), $_GET['cat']);
+        var_dump($pagi);
         for($j=0;$j<COUNT($pagi);$j++){ 
                 $path_id=$pagi[$j]['id'];
-                echo '<div class='.'testbox'.'><a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
+                var_dump($path_id);
+                echo '<div class='.'testbox'.'><a href='.$path_article.'/?cat='.$path_id.' ><article>' .'</br>' .
                 $pagi[$j]['article'] . '</br>' .
                 $pagi[$j]['nom'] . '</br>' .
                 $pagi[$j]['login'] . '</br>' .
                 $pagi[$j]['date'] . '</br>
                 </article></a></br></div>';
         }
- 
+
 for($i=0;$i<$nb_pages;$i++){
         $k=$i+1;
         if($i==$nb_pages-1){
@@ -63,10 +66,8 @@ for($i=0;$i<$nb_pages;$i++){
         else{
         echo"<a href=\"articles.php?p=$i\">$k</a>-";
 }
-echo'<pre>';
-        var_dump($triage);
-        var_dump($varible);
-echo '</pre>';
+
+var_dump($pagi);
 }
 }
 else{

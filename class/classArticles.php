@@ -116,7 +116,7 @@ class Articles
         $choice = new Articles();
         $tab = $choice->selectCat();
         foreach ($tab as $value) {
-            echo '<option values"' . $value[0] . '">' . $value[1] . '</option>';
+            echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
         }
     }
 //----------------------------------------------Article by ----------------------------------------------------------------
@@ -149,6 +149,7 @@ class Articles
         $paginationCat->execute();
         $p = $paginationCat->fetchall(PDO::FETCH_ASSOC);
         return $p;
+        var_dump($p);
     }
     //-----------------------------------DELETE Article------------------------------------------------------------------------------------------------
     public function deleteArt($id){
