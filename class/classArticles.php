@@ -142,7 +142,7 @@ class Articles
 
     public function getPaginationCat($limit, $par_pages, $id)
     {
-        $paginationCat = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date,articles.id FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date LIMIT :limited, :par_pages WHERE id_categories = :id");
+        $paginationCat = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date,articles.id FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie WHERE id_categorie = :id ORDER BY Date LIMIT :limited, :par_pages ");
         $paginationCat->bindParam(':limited', $limit, PDO::PARAM_INT);
         $paginationCat->bindParam(':par_pages', $par_pages, PDO::PARAM_INT);
         $paginationCat->bindParam(':id', $id, PDO::PARAM_INT);
