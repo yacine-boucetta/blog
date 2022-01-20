@@ -21,7 +21,7 @@ require '../template/header.php';
 <main >
                 
                         <h1>Liste des articles</h1>
-                        <form>
+                        <form method=post>
                         <select name='cat'>
         <?php
             $menu= new Articles;
