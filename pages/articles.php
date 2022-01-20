@@ -21,12 +21,14 @@ require '../template/header.php';
 <main >
                 
                         <h1>Liste des articles</h1>
+                        <form>
                         <select name='cat'>
         <?php
             $menu= new Articles;
             $menu->displayCat();
         ?>
         </select>
+</form>
         <button type='submit' name="tri" >trier</input>
                         <?php
                         $searchcount = new Articles();
