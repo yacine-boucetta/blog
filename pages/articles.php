@@ -57,10 +57,10 @@ if(isset($_GET['tri'])){
 for($i=0;$i<$nb_pages;$i++){
         $k=$i+1;
         if($i==$nb_pages-1){
-                echo"<a href=\"articles.php?p=$i\">$k</a>";
+                echo"<a href=\"articles.php?p=$i?cat='.$path_id.'\">$k</a>";
         }
         else{
-        echo"<a href=\"articles.php?p=$i\">$k</a>-";
+        echo"<a href=\"articles.php?p=$i?cat='.$path_id.'\">$k</a>-";
 }
 }
 }
