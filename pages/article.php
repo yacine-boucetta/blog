@@ -80,7 +80,7 @@ require_once '../template/header.php';
         ?>
     </article>
     <?php
-        if(isset($_SESSION['user'])){
+        if(isset($_SESSION['user']) && $_SESSION['user']['id_droits'] == '1337'){
             require 'deleteArticle.php';
         }
     ?>
