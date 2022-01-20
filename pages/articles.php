@@ -16,21 +16,60 @@ require_once '../class/classArticles.php';
 $article = new Articles();
 $ok = $article->getArticle();
 require '../template/header.php';
+
+
 ?>
 
 <main >
                 
                         <h1>Liste des articles</h1>
-                        <form method=post>
+                        <form method="GET">
                         <select name='cat'>
         <?php
             $menu= new Articles;
             $menu->displayCat();
+            $varible = $menu->getIdCat($_GET['cat']);
         ?>
         </select>
+
+        <input type='submit' name="tri" >trier</input>
 </form>
-        <button type='submit' name="tri" >trier</input>
-                        <?php
+<?php
+if(isset($_GET['tri'])){
+        $tri = new Articles();
+        $nom = $tri->getIdCat($_GET['cat']);
+        $triage = $tri->getArticleByCategory($nom); 
+        $countcat=COUNT($triage);
+        $par_pages=5;
+        $nb_pages= ceil($countcat/$par_pages);
+        $j=$_GET['p'];
+        $limit=($j*$par_pages);
+        $pagi = $tri->getPaginationCat($limit,$par_pages*($j+1), $nom);
+        for($j=0;$j<COUNT($pagi);$j++){ 
+                $path_id=$pagi[$j]['id'];
+                echo '<div class='.'testbox'.'><a href='.$path_article.'/?id='.$path_id.' ><article>' .'</br>' .
+                $pagi[$j]['article'] . '</br>' .
+                $pagi[$j]['nom'] . '</br>' .
+                $pagi[$j]['login'] . '</br>' .
+                $pagi[$j]['date'] . '</br>
+                </article></a></br></div>';
+        }
+ 
+for($i=0;$i<$nb_pages;$i++){
+        $k=$i+1;
+        if($i==$nb_pages-1){
+                echo"<a href=\"articles.php?p=$i\">$k</a>";
+        }
+        else{
+        echo"<a href=\"articles.php?p=$i\">$k</a>-";
+}
+echo'<pre>';
+        var_dump($triage);
+        var_dump($varible);
+echo '</pre>';
+}
+}
+else{
                         $searchcount = new Articles();
                         $searchn = $searchcount->getNumber();
                         $par_pages=5;
@@ -62,7 +101,7 @@ require '../template/header.php';
                                 echo"<a href=\"articles.php?p=$i\">$k</a>-";
                         }
                         }
-                        
+                }
                         ?>
 </main>
 <?php require '../template/footer.php';?>

@@ -139,6 +139,17 @@ class Articles
         $p = $pagination->fetchall(PDO::FETCH_ASSOC);
         return $p;
     }
+
+    public function getPaginationCat($limit, $par_pages, $id)
+    {
+        $paginationCat = $this->db->prepare("SELECT article,nom,utilisateurs.login,categories.nom,date,articles.id FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur= utilisateurs.id INNER JOIN categories ON categories.id = articles.id_categorie ORDER BY Date LIMIT :limited, :par_pages WHERE id_categories = :id");
+        $paginationCat->bindParam(':limited', $limit, PDO::PARAM_INT);
+        $paginationCat->bindParam(':par_pages', $par_pages, PDO::PARAM_INT);
+        $paginationCat->bindParam(':id', $id, PDO::PARAM_INT);
+        $paginationCat->execute();
+        $p = $paginationCat->fetchall(PDO::FETCH_ASSOC);
+        return $p;
+    }
     //-----------------------------------DELETE Article------------------------------------------------------------------------------------------------
     public function deleteArt($id){
         $delete = $this->db->prepare("DELETE FROM articles WHERE id = :id ");
@@ -189,10 +200,11 @@ class Articles
 
 //------------------------------------------------Get article by categories----------------------------------------------------------------
 public function getArticleByCategory($id){
-    $getArtCat = $this->db->prepare("SELECT * FROM articles WHERE id = :id");
+    $id =(int)$id;
+    $getArtCat = $this->db->prepare("SELECT * FROM articles WHERE id_categorie = :id");
     $getArtCat->bindValue(':id',$id, PDO::PARAM_INT);
     $getArtCat->execute();
-    $get = $getArtCat->fetch(PDO::FETCH_ASSOC);
+    $get = $getArtCat->fetchAll(PDO::FETCH_ASSOC);
     return $get;
 
 }
