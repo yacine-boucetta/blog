@@ -8,7 +8,7 @@
     </select> 
         <textarea name='updateArt' rows='10' cols='60' style='resize:none' placeholder="Modification d'article"></textarea><br/>
         <div class='btn-block'>
-        <button type='submit' name="updateArticle" value='Update'>Update</input>
+        <button type='submit' name="updateArticle" value='Update'>Update</button>
         </div>
         <div class='btn-block'>
         <button type='submit' name="delete" >Effacer</input>

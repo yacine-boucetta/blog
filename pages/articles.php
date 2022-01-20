@@ -21,12 +21,22 @@ require '../template/header.php';
 <main >
                 
                         <h1>Liste des articles</h1>
+                        <select name='cat'>
+        <?php
+            $menu= new Articles;
+            $menu->displayCat();
+        ?>
+        </select>
+        <button type='submit' name="tri" >trier</input>
                         <?php
                         $searchcount = new Articles();
                         $searchn = $searchcount->getNumber();
                         $par_pages=5;
                         $nb_pages= ceil($searchn/$par_pages);
                         $j=$_GET['p'];
+                        ?>
+        
+        <?php
                                 if(isset($_GET['p'])){
                                 
                                 $limit=($j*$par_pages);
