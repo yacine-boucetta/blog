@@ -186,4 +186,14 @@ class Articles
         // var_dump($id);
         // var_dump($test);
     }
+
+//------------------------------------------------Get article by categories----------------------------------------------------------------
+public function getArticleByCategory($id){
+    $getArtCat = $this->db->prepare("SELECT * FROM articles WHERE id = :id");
+    $getArtCat->bindValue(':id',$id, PDO::PARAM_INT);
+    $getArtCat->execute();
+    $get = $getArtCat->fetch(PDO::FETCH_ASSOC);
+    return $get;
+
+}
 }
