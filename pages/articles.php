@@ -46,7 +46,7 @@ if(isset($_GET['tri'])){
         for($j=0;$j<COUNT($pagi);$j++){ 
                 $path_id=$pagi[$j]['id'];
                 
-                echo '<div class='.'testbox'.'><a href='.$path_article.'?p='.$j.'/?cat='.$path_id.' ><article>' .'</br>' .
+                echo '<div class='.'testbox'.'><a href='.$path_article.'/?cat='.$path_id.' ><article>' .'</br>' .
                 $pagi[$j]['article'] . '</br>' .
                 $pagi[$j]['nom'] . '</br>' .
                 $pagi[$j]['login'] . '</br>' .
@@ -56,12 +56,11 @@ if(isset($_GET['tri'])){
 
 for($i=0;$i<$nb_pages;$i++){
         $k=$i+1;
-        $karen=$_GET['cat'];
         if($i==$nb_pages-1){
-                echo"<a href=\"articles.php?p=$i?cat=$karen\">$k</a>";
+                echo"<a href=\"articles.php?p=$i?cat='.$path_id.'\">$k</a>";
         }
         else{
-        echo"<a href=\"articles.php?p=$i?cat=$karen\">$k</a>-";
+        echo"<a href=\"articles.php?p=$i?cat='.$path_id.'\">$k</a>-";
 }
 }
 }

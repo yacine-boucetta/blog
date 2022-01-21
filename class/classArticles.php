@@ -202,7 +202,7 @@ class Articles
 //------------------------------------------------Get article by categories----------------------------------------------------------------
 public function getArticleByCategory($id){
     $id =(int)$id;
-    $getArtCat = $this->db->prepare("SELECT * FROM articles WHERE id_categorie = :id");
+    $getArtCat = $this->db->prepare("SELECT articles.id, article, id_categorie, date, utilisateurs.login FROM articles INNER JOIN utilisateurs ON articles.id_utilisateur = utilisateurs.id WHERE id_categorie = :id);
     $getArtCat->bindValue(':id',$id, PDO::PARAM_INT);
     $getArtCat->execute();
     $get = $getArtCat->fetchAll(PDO::FETCH_ASSOC);
