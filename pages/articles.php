@@ -40,11 +40,11 @@ if(isset($_GET['cat'])){
         $triage = $tri->getArticleByCategory($_GET['cat']); 
         $countcat=COUNT($triage);
         $par_pages=5;
+        $j=$_GET['p'];
         $nb_pages= ceil($countcat/$par_pages);
-        $limit=(($nb_pages-1)*$par_pages);
-        $_SESSION['pagi'] = $_GET['cat'];
-        $paginationCat = $_SESSION['pagi'];
-        $pagi = $tri->getPaginationCat($limit,$par_pages*($nb_pages), $paginationCat);
+        $limit=(($j)*$par_pages);
+$h=$_GET['cat'];
+        $pagi = $tri->getPaginationCat($limit,$par_pages*($j+1), $h);
         for($j=0;$j<COUNT($pagi);$j++){ 
                 $path_id=$pagi[$j]['id'];
                 
@@ -59,10 +59,10 @@ if(isset($_GET['cat'])){
 for($i=0;$i<$nb_pages;$i++){
         $k=$i+1;
         if($i==$nb_pages-1){
-                echo"<a href=\"articles.php?p=$i&cat=$paginationCat\">$k</a>";
+                echo"<a href=\"articles.php?p=$i&cat=$h\">$k</a>";
         }
         else{
-        echo"<a href=\"articles.php?p=$i&cat=$paginationCat\">$k</a>-";
+        echo"<a href=\"articles.php?p=$i&cat=$$h\">$k</a>-";
 }
 }
 }
