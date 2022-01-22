@@ -43,7 +43,9 @@ if(isset($_GET['cat'])){
         $j=$_GET['p'];
         $nb_pages= ceil($countcat/$par_pages);
         $limit=(($j)*$par_pages);
-$h=$_GET['cat'];
+        
+        
+        $h=$_GET['cat'];
         $pagi = $tri->getPaginationCat($limit,$par_pages*($j+1), $h);
         for($j=0;$j<COUNT($pagi);$j++){ 
                 $path_id=$pagi[$j]['id'];
