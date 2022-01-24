@@ -42,13 +42,14 @@ if(isset($_GET['cat'])){
         $countcat=COUNT($triage);
         $par_pages=5;
         if(empty($_GET['p'])){
-                $_GET['p']='1';
+                $_GET['p']='0';
         }
         $j=$_GET['p'];
         $nb_pages= ceil($countcat/$par_pages);
         $limit=(($j)*$par_pages);
         $h=$_GET['cat'];
         $pagi = $tri->getPaginationCat($limit,$par_pages*($j+1), $h);
+
         for($j=0;$j<COUNT($pagi);$j++){ 
                 $path_id=$pagi[$j]['id'];
                 
