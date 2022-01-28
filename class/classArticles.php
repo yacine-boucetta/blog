@@ -42,11 +42,12 @@ class Articles
         if (isset($_GET['envoyer'])) {
             $pseudo = $_SESSION['user']['id'];
             $get_id_cat = $_GET['cat'];
-            $connexion = $this->db->prepare("SELECT id FROM categories WHERE nom=:cat");
+            $connexion = $this->db->prepare("SELECT id FROM categories WHERE id=:cat");
             $connexion->execute(array(
                 ':cat' => $get_id_cat
             ));
             $fetchid = $connexion->fetchall(PDO::FETCH_ASSOC);
+            var_dump($fetchid);
             $comment = htmlspecialchars($_GET['comment'], ENT_QUOTES);
             $connexion = $this->db->prepare("INSERT INTO `articles`(article, id_utilisateur,id_categorie,date) VALUES (:comment,:pseudo,:cat,:date)");
             $connexion->execute(array(
